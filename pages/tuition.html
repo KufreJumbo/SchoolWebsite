@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,8 +14,19 @@
       text-align: center;
       padding: 64px 24px 48px;
     }
-    .tuition-hero h1 { font-size: 2.2rem; font-weight: 700; margin: 0 0 12px; }
-    .tuition-hero p  { font-size: 1rem; opacity: .85; max-width: 520px; margin: 0 auto; }
+
+    .tuition-hero h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin: 0 0 12px;
+    }
+
+    .tuition-hero p {
+      font-size: 1rem;
+      opacity: .85;
+      max-width: 520px;
+      margin: 0 auto;
+    }
 
     .tuition-section {
       max-width: 900px;
@@ -30,6 +42,7 @@
       flex-wrap: wrap;
       margin-bottom: 32px;
     }
+
     .tuition-tab-btn {
       padding: 10px 24px;
       border-radius: 6px;
@@ -40,38 +53,137 @@
       cursor: pointer;
       transition: background .2s, color .2s;
     }
+
     .tuition-tab-btn.is-active,
     .tuition-tab-btn:hover {
       background: #1d3fa3;
       color: #fff;
     }
 
-    /* Fee table */
-    .fee-panel { display: none; }
-    .fee-panel.is-active { display: block; }
+    /* Fee panel */
+    .fee-panel {
+      display: none;
+    }
 
+    .fee-panel.is-active {
+      display: block;
+    }
+
+    /* Class Selectors */
+    .class-selector-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+
+    .class-selector-label {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #0f2a6b;
+    }
+
+    .class-btn {
+      padding: 8px 20px;
+      border-radius: 20px;
+      border: 1.5px solid #1d3fa3;
+      background: #f3f6fb;
+      color: #1d3fa3;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .class-btn.is-active,
+    .class-btn:hover {
+      background: #1d3fa3;
+      color: #ffffff;
+    }
+
+    /* Alert / Notice */
+    .fee-alert-notice {
+      background: #fefce8;
+      border: 1px solid #fef08a;
+      border-left: 4px solid #eab308;
+      color: #854d0e;
+      padding: 16px 20px;
+      border-radius: 8px;
+      margin-bottom: 24px;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Section Subheadings */
+    .fee-subheading {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #0f2a6b;
+      margin: 28px 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Fee Table */
     .fee-table {
       width: 100%;
       border-collapse: collapse;
       font-size: .95rem;
     }
+
     .fee-table th {
       background: #0f2a6b;
       color: #fff;
       padding: 12px 16px;
       text-align: left;
     }
+
     .fee-table td {
       padding: 11px 16px;
       border-bottom: 1px solid #e6ecf5;
     }
-    .fee-table tbody tr:nth-child(even) { background: #f3f6fb; }
-    .fee-table .total { font-weight: 700; color: #1d3fa3; }
+
+    .fee-table tbody tr:nth-child(even) {
+      background: #f3f6fb;
+    }
+
+    .fee-table .total {
+      font-weight: 700;
+      color: #1d3fa3;
+      font-size: 1.05rem;
+    }
+
+    .fee-table .total-row {
+      background: #eef3fb !important;
+      border-top: 2px solid #1d3fa3;
+    }
 
     .fee-note {
       margin-top: 16px;
       font-size: .85rem;
       color: #6b7280;
+    }
+
+    .includes-detail {
+      display: block;
+      font-size: 0.82rem;
+      color: #6b7280;
+      margin-top: 3px;
+    }
+
+    .badge-optional {
+      display: inline-block;
+      background: #e0f2fe;
+      color: #0369a1;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      margin-left: 6px;
     }
 
     .download-btn {
@@ -86,7 +198,10 @@
       cursor: pointer;
       text-decoration: none;
     }
-    .download-btn:hover { opacity: .88; }
+
+    .download-btn:hover {
+      opacity: .88;
+    }
 
     /* Payment Channels */
     .payment-channels {
@@ -142,6 +257,7 @@
     }
   </style>
 </head>
+
 <body>
 
   <header class="site-header">
@@ -152,7 +268,8 @@
         <span class="brand-title">Sagab Schools</span>
       </a>
 
-      <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu"><span class="nav-toggle-bars" aria-hidden="true">
+      <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu"><span
+          class="nav-toggle-bars" aria-hidden="true">
           <span></span><span></span><span></span>
         </span>
       </button>
@@ -215,16 +332,31 @@
       <div class="header-actions" aria-label="Header actions">
         <div class="social-links" aria-label="Social links">
           <a class="social-link" href="#" aria-label="Facebook">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.12 8.5h-2.1V7.2c0-.54.36-.66.62-.66h1.43V4.1l-1.97-.1c-2.2 0-2.7 1.66-2.7 2.72V8.5H8.8v2.4h1.6V20h2.6v-9.1h1.92l.2-2.4z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M15.12 8.5h-2.1V7.2c0-.54.36-.66.62-.66h1.43V4.1l-1.97-.1c-2.2 0-2.7 1.66-2.7 2.72V8.5H8.8v2.4h1.6V20h2.6v-9.1h1.92l.2-2.4z" />
+            </svg>
           </a>
           <a class="social-link" href="#" aria-label="Twitter">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.67 7.15c.01.14.01.28.01.43 0 4.43-3.37 9.54-9.54 9.54-1.9 0-3.66-.55-5.14-1.5.26.03.52.04.79.04 1.57 0 3.01-.53 4.16-1.44-1.46-.03-2.69-.99-3.11-2.31.2.03.4.05.62.05.29 0 .58-.04.85-.11-1.53-.31-2.69-1.66-2.69-3.29v-.04c.45.25.97.41 1.52.43-.9-.6-1.49-1.62-1.49-2.78 0-.61.16-1.18.45-1.67 1.64 2.01 4.09 3.33 6.86 3.46-.05-.24-.08-.48-.08-.73 0-1.77 1.44-3.21 3.21-3.21.92 0 1.76.39 2.35 1.01.73-.14 1.42-.41 2.04-.78-.24.75-.75 1.38-1.41 1.78.65-.08 1.28-.25 1.86-.5-.44.64-.98 1.2-1.62 1.65z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M19.67 7.15c.01.14.01.28.01.43 0 4.43-3.37 9.54-9.54 9.54-1.9 0-3.66-.55-5.14-1.5.26.03.52.04.79.04 1.57 0 3.01-.53 4.16-1.44-1.46-.03-2.69-.99-3.11-2.31.2.03.4.05.62.05.29 0 .58-.04.85-.11-1.53-.31-2.69-1.66-2.69-3.29v-.04c.45.25.97.41 1.52.43-.9-.6-1.49-1.62-1.49-2.78 0-.61.16-1.18.45-1.67 1.64 2.01 4.09 3.33 6.86 3.46-.05-.24-.08-.48-.08-.73 0-1.77 1.44-3.21 3.21-3.21.92 0 1.76.39 2.35 1.01.73-.14 1.42-.41 2.04-.78-.24.75-.75 1.38-1.41 1.78.65-.08 1.28-.25 1.86-.5-.44.64-.98 1.2-1.62 1.65z" />
+            </svg>
           </a>
           <a class="social-link" href="#" aria-label="Instagram">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.5 7.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/><path d="M12 8.2A3.8 3.8 0 1 0 12 15.8 3.8 3.8 0 0 0 12 8.2zm0 6.2A2.4 2.4 0 1 1 12 10a2.4 2.4 0 0 1 0 4.4z"/><path d="M16.2 4H7.8A3.8 3.8 0 0 0 4 7.8v8.4A3.8 3.8 0 0 0 7.8 20h8.4A3.8 3.8 0 0 0 20 16.2V7.8A3.8 3.8 0 0 0 16.2 4zm2.2 12.2a2.2 2.2 0 0 1-2.2 2.2H7.8a2.2 2.2 0 0 1-2.2-2.2V7.8a2.2 2.2 0 0 1 2.2-2.2h8.4a2.2 2.2 0 0 1 2.2 2.2z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M16.5 7.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+              <path
+                d="M12 8.2A3.8 3.8 0 1 0 12 15.8 3.8 3.8 0 0 0 12 8.2zm0 6.2A2.4 2.4 0 1 1 12 10a2.4 2.4 0 0 1 0 4.4z" />
+              <path
+                d="M16.2 4H7.8A3.8 3.8 0 0 0 4 7.8v8.4A3.8 3.8 0 0 0 7.8 20h8.4A3.8 3.8 0 0 0 20 16.2V7.8A3.8 3.8 0 0 0 16.2 4zm2.2 12.2a2.2 2.2 0 0 1-2.2 2.2H7.8a2.2 2.2 0 0 1-2.2-2.2V7.8a2.2 2.2 0 0 1 2.2-2.2h8.4a2.2 2.2 0 0 1 2.2 2.2z" />
+            </svg>
           </a>
           <a class="social-link" href="#" aria-label="LinkedIn">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.94 8.5H4.3V20h2.64zM5.62 7.3a1.53 1.53 0 1 1 0-3.06 1.53 1.53 0 0 1 0 3.06zM20 20h-2.64v-5.66c0-1.35-.02-3.09-1.88-3.09-1.88 0-2.17 1.46-2.17 2.99V20h-2.64V8.5h2.53v1.57h.04c.35-.66 1.2-1.36 2.46-1.36 2.63 0 3.12 1.73 3.12 3.99z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M6.94 8.5H4.3V20h2.64zM5.62 7.3a1.53 1.53 0 1 1 0-3.06 1.53 1.53 0 0 1 0 3.06zM20 20h-2.64v-5.66c0-1.35-.02-3.09-1.88-3.09-1.88 0-2.17 1.46-2.17 2.99V20h-2.64V8.5h2.53v1.57h.04c.35-.66 1.2-1.36 2.46-1.36 2.63 0 3.12 1.73 3.12 3.99z" />
+            </svg>
           </a>
         </div>
         <a class="apply-btn" href="/pages/admissions.html">Apply Now</a>
@@ -242,9 +374,12 @@
     <div class="tuition-section">
 
       <div class="tuition-tabs" role="tablist" aria-label="Fee categories">
-        <button class="tuition-tab-btn is-active" role="tab" aria-selected="true"  aria-controls="panel-montessori" data-panel="panel-montessori">Montessori</button>
-        <button class="tuition-tab-btn"            role="tab" aria-selected="false" aria-controls="panel-junior"     data-panel="panel-junior">Junior Secondary</button>
-        <button class="tuition-tab-btn"            role="tab" aria-selected="false" aria-controls="panel-senior"     data-panel="panel-senior">Senior Secondary</button>
+        <button class="tuition-tab-btn is-active" role="tab" aria-selected="true" aria-controls="panel-montessori"
+          data-panel="panel-montessori">Montessori</button>
+        <button class="tuition-tab-btn" role="tab" aria-selected="false" aria-controls="panel-junior"
+          data-panel="panel-junior">Junior Secondary</button>
+        <button class="tuition-tab-btn" role="tab" aria-selected="false" aria-controls="panel-senior"
+          data-panel="panel-senior">Senior Secondary</button>
       </div>
 
       <!-- Montessori -->
@@ -256,65 +391,79 @@
               <th>Tuition Fee</th>
               <th>Registration</th>
               <th>Books &amp; Materials</th>
-              <th>Total Annual Fee</th>
+              <th>Total Term Fee (NGN)</th>
             </tr>
           </thead>
           <tbody>
-            <tr><td>Nursery 1</td><td>5,000</td><td>300</td><td>500</td><td class="total">5,800</td></tr>
-            <tr><td>Nursery 2</td><td>5,000</td><td>300</td><td>500</td><td class="total">5,800</td></tr>
-            <tr><td>KG 1</td><td>5,500</td><td>300</td><td>600</td><td class="total">6,400</td></tr>
-            <tr><td>KG 2</td><td>5,500</td><td>300</td><td>600</td><td class="total">6,400</td></tr>
-            <tr><td>Primary 1–3</td><td>6,500</td><td>400</td><td>700</td><td class="total">7,600</td></tr>
-            <tr><td>Primary 4–6</td><td>7,000</td><td>400</td><td>750</td><td class="total">8,150</td></tr>
+            <tr>
+              <td>Nursery 1</td>
+              <td>50,000</td>
+              <td>5,000</td>
+              <td>15,000</td>
+              <td class="total">70,000</td>
+            </tr>
+            <tr>
+              <td>Nursery 2</td>
+              <td>50,000</td>
+              <td>5,000</td>
+              <td>15,000</td>
+              <td class="total">70,000</td>
+            </tr>
+            <tr>
+              <td>KG 1</td>
+              <td>55,000</td>
+              <td>5,000</td>
+              <td>18,000</td>
+              <td class="total">78,000</td>
+            </tr>
+            <tr>
+              <td>KG 2</td>
+              <td>55,000</td>
+              <td>5,000</td>
+              <td>18,000</td>
+              <td class="total">78,000</td>
+            </tr>
+            <tr>
+              <td>Primary 1–3</td>
+              <td>60,000</td>
+              <td>5,000</td>
+              <td>20,000</td>
+              <td class="total">85,000</td>
+            </tr>
+            <tr>
+              <td>Primary 4–6</td>
+              <td>65,000</td>
+              <td>5,000</td>
+              <td>22,000</td>
+              <td class="total">92,000</td>
+            </tr>
           </tbody>
         </table>
-        <p class="fee-note">* All fees are quoted in USD. Payment plans are available — contact the admissions office for details.</p>
+        <p class="fee-note">* Payment plans are available — contact the school bursary or admissions office for details.
+        </p>
         <div><button class="download-btn" onclick="window.print()">Download as PDF</button></div>
       </div>
 
       <!-- Junior Secondary -->
       <div id="panel-junior" class="fee-panel" role="tabpanel">
-        <table class="fee-table">
-          <thead>
-            <tr>
-              <th>Grade Level</th>
-              <th>Tuition Fee</th>
-              <th>Registration</th>
-              <th>Books &amp; Materials</th>
-              <th>Total Annual Fee</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>Grade 7</td><td>8,500</td><td>500</td><td>800</td><td class="total">9,800</td></tr>
-            <tr><td>Grade 8</td><td>8,500</td><td>500</td><td>800</td><td class="total">9,800</td></tr>
-            <tr><td>Grade 9</td><td>9,000</td><td>500</td><td>900</td><td class="total">10,400</td></tr>
-            <tr><td>Grade 10</td><td>9,000</td><td>500</td><td>900</td><td class="total">10,400</td></tr>
-          </tbody>
-        </table>
-        <p class="fee-note">* All fees are quoted in USD. Payment plans are available — contact the admissions office for details.</p>
-        <div><button class="download-btn" onclick="window.print()">Download as PDF</button></div>
+        <div class="class-selector-wrap">
+          <span class="class-selector-label">Select Class:</span>
+          <button class="class-btn is-active" data-section="juniorSecondary" data-class="js1">JS1</button>
+          <button class="class-btn" data-section="juniorSecondary" data-class="js2">JS2</button>
+          <button class="class-btn" data-section="juniorSecondary" data-class="js3">JS3</button>
+        </div>
+        <div id="junior-fee-container"></div>
       </div>
 
       <!-- Senior Secondary -->
       <div id="panel-senior" class="fee-panel" role="tabpanel">
-        <table class="fee-table">
-          <thead>
-            <tr>
-              <th>Grade Level</th>
-              <th>Tuition Fee</th>
-              <th>Registration</th>
-              <th>Books &amp; Materials</th>
-              <th>Total Annual Fee</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>SS 1</td><td>10,000</td><td>600</td><td>1,000</td><td class="total">11,600</td></tr>
-            <tr><td>SS 2</td><td>10,000</td><td>600</td><td>1,000</td><td class="total">11,600</td></tr>
-            <tr><td>SS 3</td><td>10,500</td><td>600</td><td>1,100</td><td class="total">12,200</td></tr>
-          </tbody>
-        </table>
-        <p class="fee-note">* All fees are quoted in NGN. Payment plans are available — contact the admissions office for details.</p>
-        <div><button class="download-btn" onclick="window.print()">Download as PDF</button></div>
+        <div class="class-selector-wrap">
+          <span class="class-selector-label">Select Class:</span>
+          <button class="class-btn" data-section="seniorSecondary" data-class="ss1">SS1</button>
+          <button class="class-btn is-active" data-section="seniorSecondary" data-class="ss2">SS2</button>
+          <button class="class-btn" data-section="seniorSecondary" data-class="ss3">SS3</button>
+        </div>
+        <div id="senior-fee-container"></div>
       </div>
 
     </div>
@@ -334,34 +483,34 @@
           </thead>
           <tbody>
             <tr>
-              <td>Sagab Schools</td>
-              <td>1015243675</td>
-              <td>Zenith Bank Plc</td>
+              <td>Sagab College</td>
+              <td>2014919051</td>
+              <td>First Bank</td>
               <td>Tuition</td>
             </tr>
             <tr>
-              <td>Sagab Schools</td>
-              <td>1014838643</td>
-              <td>Zenith Bank Plc</td>
-              <td>Transportation</td>
+              <td>Sagab College</td>
+              <td>0023421118</td>
+              <td>Access Bank</td>
+              <td>Tuition</td>
             </tr>
             <tr>
-              <td>Sagab Schools</td>
-              <td>1014613284</td>
-              <td>Zenith Bank Plc</td>
-              <td>Lunch / Hostel</td>
+              <td>Sagab College</td>
+              <td>6220045817</td>
+              <td>Fidelity Bank</td>
+              <td>Hostel Fees</td>
             </tr>
             <tr>
-              <td>Sagab Schools</td>
-              <td>1015243682</td>
-              <td>Zenith Bank Plc</td>
+              <td>Sagab College</td>
+              <td>3135152014</td>
+              <td>FCMB Bank</td>
               <td>Uniform</td>
             </tr>
             <tr>
-              <td>Sagab Schools</td>
-              <td>1014613277</td>
-              <td>Zenith Bank Plc</td>
-              <td>Books</td>
+              <td>Sagab College</td>
+              <td>0024641796</td>
+              <td>Stanbic IBTC</td>
+              <td>AI, Robotics &amp; Coding</td>
             </tr>
           </tbody>
         </table>
@@ -381,12 +530,28 @@
               <span class="footer-brand-subtitle">Excellence in Education</span>
             </div>
           </div>
-          <p class="footer-description">Nurturing tomorrow's leaders through innovative education, character development, and a commitment to excellence in everything we do.</p>
+          <p class="footer-description">Nurturing tomorrow's leaders through innovative education, character
+            development, and a commitment to excellence in everything we do.</p>
           <div class="footer-social" aria-label="Social links">
-            <a class="footer-social-link" href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.12 8.5h-2.1V7.2c0-.54.36-.66.62-.66h1.43V4.1l-1.97-.1c-2.2 0-2.7 1.66-2.7 2.72V8.5H8.8v2.4h1.6V20h2.6v-9.1h1.92l.2-2.4z"/></svg></a>
-            <a class="footer-social-link" href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.67 7.15c.01.14.01.28.01.43 0 4.43-3.37 9.54-9.54 9.54-1.9 0-3.66-.55-5.14-1.5.26.03.52.04.79.04 1.57 0 3.01-.53 4.16-1.44-1.46-.03-2.69-.99-3.11-2.31.2.03.4.05.62.05.29 0 .58-.04.85-.11-1.53-.31-2.69-1.66-2.69-3.29v-.04c.45.25.97.41 1.52.43-.9-.6-1.49-1.62-1.49-2.78 0-.61.16-1.18.45-1.67 1.64 2.01 4.09 3.33 6.86 3.46-.05-.24-.08-.48-.08-.73 0-1.77 1.44-3.21 3.21-3.21.92 0 1.76.39 2.35 1.01.73-.14 1.42-.41 2.04-.78-.24.75-.75 1.38-1.41 1.78.65-.08 1.28-.25 1.86-.5-.44.64-.98 1.2-1.62 1.65z"/></svg></a>
-            <a class="footer-social-link" href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.5 7.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/><path d="M12 8.2A3.8 3.8 0 1 0 12 15.8 3.8 3.8 0 0 0 12 8.2zm0 6.2A2.4 2.4 0 1 1 12 10a2.4 2.4 0 0 1 0 4.4z"/><path d="M16.2 4H7.8A3.8 3.8 0 0 0 4 7.8v8.4A3.8 3.8 0 0 0 7.8 20h8.4A3.8 3.8 0 0 0 20 16.2V7.8A3.8 3.8 0 0 0 16.2 4zm2.2 12.2a2.2 2.2 0 0 1-2.2 2.2H7.8a2.2 2.2 0 0 1-2.2-2.2V7.8a2.2 2.2 0 0 1 2.2-2.2h8.4a2.2 2.2 0 0 1 2.2 2.2z"/></svg></a>
-            <a class="footer-social-link" href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.94 8.5H4.3V20h2.64zM5.62 7.3a1.53 1.53 0 1 1 0-3.06 1.53 1.53 0 0 1 0 3.06zM20 20h-2.64v-5.66c0-1.35-.02-3.09-1.88-3.09-1.88 0-2.17 1.46-2.17 2.99V20h-2.64V8.5h2.53v1.57h.04c.35-.66 1.2-1.36 2.46-1.36 2.63 0 3.12 1.73 3.12 3.99z"/></svg></a>
+            <a class="footer-social-link" href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M15.12 8.5h-2.1V7.2c0-.54.36-.66.62-.66h1.43V4.1l-1.97-.1c-2.2 0-2.7 1.66-2.7 2.72V8.5H8.8v2.4h1.6V20h2.6v-9.1h1.92l.2-2.4z" />
+              </svg></a>
+            <a class="footer-social-link" href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M19.67 7.15c.01.14.01.28.01.43 0 4.43-3.37 9.54-9.54 9.54-1.9 0-3.66-.55-5.14-1.5.26.03.52.04.79.04 1.57 0 3.01-.53 4.16-1.44-1.46-.03-2.69-.99-3.11-2.31.2.03.4.05.62.05.29 0 .58-.04.85-.11-1.53-.31-2.69-1.66-2.69-3.29v-.04c.45.25.97.41 1.52.43-.9-.6-1.49-1.62-1.49-2.78 0-.61.16-1.18.45-1.67 1.64 2.01 4.09 3.33 6.86 3.46-.05-.24-.08-.48-.08-.73 0-1.77 1.44-3.21 3.21-3.21.92 0 1.76.39 2.35 1.01.73-.14 1.42-.41 2.04-.78-.24.75-.75 1.38-1.41 1.78.65-.08 1.28-.25 1.86-.5-.44.64-.98 1.2-1.62 1.65z" />
+              </svg></a>
+            <a class="footer-social-link" href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M16.5 7.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+                <path
+                  d="M12 8.2A3.8 3.8 0 1 0 12 15.8 3.8 3.8 0 0 0 12 8.2zm0 6.2A2.4 2.4 0 1 1 12 10a2.4 2.4 0 0 1 0 4.4z" />
+                <path
+                  d="M16.2 4H7.8A3.8 3.8 0 0 0 4 7.8v8.4A3.8 3.8 0 0 0 7.8 20h8.4A3.8 3.8 0 0 0 20 16.2V7.8A3.8 3.8 0 0 0 16.2 4zm2.2 12.2a2.2 2.2 0 0 1-2.2 2.2H7.8a2.2 2.2 0 0 1-2.2-2.2V7.8a2.2 2.2 0 0 1 2.2-2.2h8.4a2.2 2.2 0 0 1 2.2 2.2z" />
+              </svg></a>
+            <a class="footer-social-link" href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M6.94 8.5H4.3V20h2.64zM5.62 7.3a1.53 1.53 0 1 1 0-3.06 1.53 1.53 0 0 1 0 3.06zM20 20h-2.64v-5.66c0-1.35-.02-3.09-1.88-3.09-1.88 0-2.17 1.46-2.17 2.99V20h-2.64V8.5h2.53v1.57h.04c.35-.66 1.2-1.36 2.46-1.36 2.63 0 3.12 1.73 3.12 3.99z" />
+              </svg></a>
           </div>
         </div>
         <div class="footer-links-col">
@@ -404,15 +569,23 @@
           <h3>Contact Info</h3>
           <ul class="footer-contact">
             <li>
-              <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg></span>
+              <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24">
+                  <path
+                    d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z" />
+                </svg></span>
               <span>123 Education Drive<br>Learning City, LC 12345</span>
             </li>
             <li>
-              <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6.6 10.8a14.9 14.9 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.7 3.8.7.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.6.7 3.8.1.4 0 .8-.3 1.1z"/></svg></span>
+              <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24">
+                  <path
+                    d="M6.6 10.8a14.9 14.9 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.7 3.8.7.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.6.7 3.8.1.4 0 .8-.3 1.1z" />
+                </svg></span>
               <span>(555) 123-4567</span>
             </li>
             <li>
-              <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2zm0 2 8 5 8-5"/></svg></span>
+              <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24">
+                  <path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2zm0 2 8 5 8-5" />
+                </svg></span>
               <span><a href="mailto:info@sagabschools.edu">info@sagabschools.edu</a></span>
             </li>
           </ul>
@@ -431,7 +604,241 @@
 
   <script src="../js/main.js" defer></script>
   <script>
-    // Simple tab switcher for fee panels
+    /**
+     * ============================================================
+     * SHARED SECONDARY FEE CONFIGURATION
+     * ============================================================
+     * All charges except Tuition Fee are shared across Junior & Senior classes.
+     * Junior Secondary uses Waistcoat (₦8,000) + Cardigan (₦8,000) instead of Blazer (₦16,000).
+     */
+    const sharedSecondaryFees = {
+      consolidatedCharges: {
+        amount: 15700,
+        includes: [
+          "Medical Fee",
+          "Examination Fee",
+          "Caution Fee",
+          "P.T.A.",
+          "Development Levy",
+          "Online Result Checker"
+        ]
+      },
+
+      juniorOtherItems: [
+        { name: "School Uniform", amount: 35000 },
+        { name: "Complete Track Suit", amount: 20000 },
+        { name: "I.D. Card", amount: 3000 },
+        { name: "Registration Fee", amount: 5000 },
+        { name: "Waistcoat", amount: 8000 },
+        { name: "Cardigan", amount: 8000 },
+        { name: "Ceremonial Hat", amount: 8000 }
+      ],
+
+      seniorOtherItems: [
+        { name: "School Uniform", amount: 35000 },
+        { name: "Complete Track Suit", amount: 20000 },
+        { name: "I.D. Card", amount: 3000 },
+        { name: "Registration Fee", amount: 5000 },
+        { name: "Blazer", amount: 16000 },
+        { name: "Ceremonial Hat", amount: 8000 }
+      ],
+
+      otherItemsTotal: 87000,
+
+      optionalFees: [
+        {
+          name: "Coding and Robotics",
+          amount: 10000,
+          optional: true,
+          includedInTotal: false
+        }
+      ],
+
+      boardingFees: {
+        amount: null,
+        displayValue: "Contact School Management",
+        includedInTotal: false
+      }
+    };
+
+    /**
+     * ============================================================
+     * CLASS-SPECIFIC TUITION FEES
+     * ============================================================
+     * Only official tuition values are specified. Missing fees are set to null.
+     */
+    const tuitionFeesByClass = {
+      juniorSecondary: {
+        js1: 62000,
+        js2: 63000,
+        js3: 64000
+      },
+
+      seniorSecondary: {
+        ss1: 67000,
+        ss2: 68000,
+        ss3: 69000
+      }
+    };
+
+    const classDisplayNames = {
+      js1: "Junior Secondary 1 (JS1)",
+      js2: "Junior Secondary 2 (JS2)",
+      js3: "Junior Secondary 3 (JS3)",
+      ss1: "Senior Secondary 1 (SS1)",
+      ss2: "Senior Secondary 2 (SS2)",
+      ss3: "Senior Secondary 3 (SS3)"
+    };
+
+    function formatNaira(num) {
+      if (num === null || num === undefined) return "—";
+      return "₦" + num.toLocaleString();
+    }
+
+    /**
+     * Renders the dynamic fee table & optional fees for a given class
+     */
+    function renderClassFeeStructure(sectionKey, classKey, containerId) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+
+      const tuitionFee = tuitionFeesByClass[sectionKey][classKey];
+      const className = classDisplayNames[classKey] || classKey.toUpperCase();
+      const hasTuition = tuitionFee !== null && tuitionFee !== undefined;
+      const otherItems = sectionKey === 'juniorSecondary' ? sharedSecondaryFees.juniorOtherItems : sharedSecondaryFees.seniorOtherItems;
+
+      let html = '';
+
+      if (!hasTuition) {
+        // Missing Tuition Fee Notice
+        html += `
+          <div class="fee-alert-notice">
+            <strong>Notice:</strong> Tuition fee information for <strong>${className}</strong> will be updated shortly. Please contact the school management for confirmation.
+          </div>
+        `;
+      }
+
+      // 1. Compulsory Fees Table
+      html += `
+        <h3 class="fee-subheading">Compulsory Charges &amp; Items — ${className}</h3>
+        <table class="fee-table">
+          <thead>
+            <tr>
+              <th>Fee Component / Item</th>
+              <th>Description / Details</th>
+              <th style="text-align: right;">Amount (NGN)</th>
+            </tr>
+          </thead>
+          <tbody>
+      `;
+
+      // Tuition Row
+      if (hasTuition) {
+        html += `
+          <tr>
+            <td><strong>Tuition Fee</strong></td>
+            <td></td>
+            <td style="text-align: right;"><strong>${formatNaira(tuitionFee)}</strong></td>
+          </tr>
+        `;
+      } else {
+        html += `
+          <tr>
+            <td><strong>Tuition Fee</strong></td>
+            <td></td>
+            <td style="text-align: right; color: #b45309; font-style: italic;">To Be Updated</td>
+          </tr>
+        `;
+      }
+
+      // Consolidated Charges Row
+      const includesText = sharedSecondaryFees.consolidatedCharges.includes.join(", ");
+      html += `
+        <tr>
+          <td><strong>Consolidated Charges</strong></td>
+          <td style="font-size: 0.88rem; color: #4b6080;">Medical Fee, Examination Fee, Caution Fee, P.T.A., Development Levy, Online Result Checker</td>
+          <td style="text-align: right;">${formatNaira(sharedSecondaryFees.consolidatedCharges.amount)}</td>
+        </tr>
+      `;
+
+      // Other Compulsory Items Rows (Empty description column instead of 'Compulsory Student Item')
+      otherItems.forEach(item => {
+        html += `
+          <tr>
+            <td>${item.name}</td>
+            <td></td>
+            <td style="text-align: right;">${formatNaira(item.amount)}</td>
+          </tr>
+        `;
+      });
+
+      // Total Compulsory Row
+      if (hasTuition) {
+        const totalPayable = tuitionFee + sharedSecondaryFees.consolidatedCharges.amount + sharedSecondaryFees.otherItemsTotal;
+        html += `
+          <tr class="total-row">
+            <td colspan="2" class="total">TOTAL FEE PAYABLE</td>
+            <td style="text-align: right;" class="total">${formatNaira(totalPayable)}</td>
+          </tr>
+        `;
+      } else {
+        const nonTuitionSubtotal = sharedSecondaryFees.consolidatedCharges.amount + sharedSecondaryFees.otherItemsTotal;
+        html += `
+          <tr class="total-row">
+            <td colspan="2" class="total">Compulsory Non-Tuition Charges Subtotal</td>
+            <td style="text-align: right;" class="total">${formatNaira(nonTuitionSubtotal)}</td>
+          </tr>
+        `;
+      }
+
+      html += `
+          </tbody>
+        </table>
+      `;
+
+      // 2. Optional & Additional Fees Section
+      html += `
+        <h3 class="fee-subheading" style="margin-top: 36px;">Optional &amp; Additional Fees</h3>
+        <table class="fee-table">
+          <thead>
+            <tr>
+              <th>Item / Service</th>
+              <th>Status</th>
+              <th style="text-align: right;">Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+      `;
+
+      sharedSecondaryFees.optionalFees.forEach(item => {
+        html += `
+          <tr>
+            <td><strong>${item.name}</strong></td>
+            <td>Optional <span class="badge-optional">Excluded from compulsory total</span></td>
+            <td style="text-align: right;"><strong>${formatNaira(item.amount)}</strong></td>
+          </tr>
+        `;
+      });
+
+      html += `
+          <tr>
+            <td><strong>Boarding Fees</strong></td>
+            <td>Additional Service <span class="badge-optional">Excluded from compulsory total</span></td>
+            <td style="text-align: right;"><strong>${sharedSecondaryFees.boardingFees.displayValue}</strong></td>
+          </tr>
+        </tbody>
+      </table>
+      `;
+
+      html += `
+        <p class="fee-note">* Payment plans are available — contact the school bursary or admissions office for details.</p>
+        <div><button class="download-btn" onclick="window.print()">Download Fee Schedule (PDF)</button></div>
+      `;
+
+      container.innerHTML = html;
+    }
+
+    // --- Tab Switcher Logic ---
     document.querySelectorAll('.tuition-tab-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.tuition-tab-btn').forEach(b => {
@@ -444,6 +851,28 @@
         document.getElementById(btn.dataset.panel).classList.add('is-active');
       });
     });
+
+    // --- Class Selector Logic ---
+    document.querySelectorAll('.class-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const section = btn.dataset.section;
+        const classKey = btn.dataset.class;
+
+        // Toggle active class button in parent wrapper
+        btn.parentElement.querySelectorAll('.class-btn').forEach(b => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+
+        const containerId = section === 'juniorSecondary' ? 'junior-fee-container' : 'senior-fee-container';
+        renderClassFeeStructure(section, classKey, containerId);
+      });
+    });
+
+    // --- Initial Render on Load ---
+    document.addEventListener('DOMContentLoaded', () => {
+      renderClassFeeStructure('juniorSecondary', 'js1', 'junior-fee-container');
+      renderClassFeeStructure('seniorSecondary', 'ss2', 'senior-fee-container');
+    });
   </script>
 </body>
+
 </html>

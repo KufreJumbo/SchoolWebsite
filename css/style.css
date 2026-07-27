@@ -2014,3 +2014,419 @@ select[aria-invalid="true"] {
   margin: 0;
 }
 /* === End Proprietress Page === */
+
+
+/* === Prefects Page === */
+.prf-banner {
+  background: linear-gradient(135deg, #0e1f3d 0%, #1d3fa3 100%);
+  color: #fff;
+  text-align: center;
+  padding: clamp(48px, 8vw, 80px) 20px clamp(40px, 6vw, 64px);
+}
+
+.prf-banner-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.65);
+  margin-bottom: 10px;
+}
+
+.prf-banner-title {
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+}
+
+.prf-intro {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: clamp(36px, 5vw, 56px) clamp(20px, 5vw, 48px);
+  text-align: center;
+}
+
+.prf-intro p {
+  font-size: clamp(0.95rem, 2vw, 1.08rem);
+  line-height: 1.8;
+  color: #4b5563;
+}
+
+/* Content wrapper */
+.prf-content {
+  background: #eeeeee;
+  padding: 0 clamp(18px, 4vw, 44px) clamp(40px, 5vw, 60px);
+  display: grid;
+  gap: clamp(16px, 2vw, 24px);
+}
+
+/* Shared grid base */
+.prf-grid {
+  max-width: 1240px;
+  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  gap: 16px;
+}
+
+/* 4 columns grid (rows 1–2) */
+.prf-grid--four {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+/* 6 columns grid (rows 3–4) */
+.prf-grid--six {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+/* Responsive: 4-col grid */
+@media (max-width: 900px) {
+  .prf-grid--four {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .prf-grid--four {
+    grid-template-columns: 1fr;
+    max-width: 360px;
+  }
+}
+
+/* Responsive: 6-col grid */
+@media (max-width: 1100px) {
+  .prf-grid--six {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .prf-grid--six {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 400px) {
+  .prf-grid--six {
+    grid-template-columns: 1fr;
+    max-width: 360px;
+  }
+}
+
+/* Card */
+.prf-card {
+  border: 1px solid #d8dbe0;
+  background: #f3f4f6;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.prf-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(15, 23, 42, 0.1);
+}
+
+/* Photo */
+.prf-photo {
+  height: 210px;
+  overflow: hidden;
+  background: #e5e7eb;
+}
+
+.prf-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+/* Card body */
+.prf-body {
+  padding: 12px 14px 14px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.prf-position {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--blue-700);
+  margin-bottom: 3px;
+}
+
+.prf-name {
+  font-family: "Avenir Next", "Segoe UI", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #202327;
+  margin: 0 0 3px;
+  line-height: 1.25;
+}
+
+.prf-class {
+  font-size: 0.8rem;
+  color: var(--ink-500);
+  margin-bottom: 0;
+}
+
+.prf-quote {
+  font-size: 0.82rem;
+  font-style: italic;
+  color: #6b7280;
+  line-height: 1.5;
+  margin-top: auto;
+  padding-top: 6px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.prf-quote::before {
+  content: "\201C";
+}
+
+.prf-quote::after {
+  content: "\201D";
+}
+
+/* Entrance animation */
+.prf-card {
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+.prf-card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .prf-card {
+    opacity: 1;
+    transform: none;
+  }
+
+  .prf-card.is-visible {
+    transition: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .prf-photo {
+    height: 240px;
+  }
+}
+/* === Prefects Page === */
+.prf-banner {
+  background: linear-gradient(135deg, #0e1f3d 0%, #1d3fa3 100%);
+  color: #fff;
+  text-align: center;
+  padding: clamp(48px, 8vw, 80px) 20px clamp(40px, 6vw, 64px);
+}
+
+.prf-banner-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.65);
+  margin-bottom: 10px;
+}
+
+.prf-banner-title {
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+}
+
+.prf-intro {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: clamp(36px, 5vw, 56px) clamp(20px, 5vw, 48px);
+  text-align: center;
+}
+
+.prf-intro p {
+  font-size: clamp(0.95rem, 2vw, 1.08rem);
+  line-height: 1.8;
+  color: #4b5563;
+}
+
+/* Content wrapper */
+.prf-content {
+  background: #eeeeee;
+  padding: clamp(30px, 4vw, 50px) clamp(18px, 4vw, 44px) clamp(40px, 5vw, 60px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Shared grid base */
+.prf-grid {
+  max-width: 1240px;
+  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  gap: 16px;
+}
+
+/* Row 1 & 2: 4 photos per line */
+.prf-grid--four {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+/* Row 3 & 4: 6 photos per line */
+.prf-grid--six {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+/* Responsive: 4-col grid */
+@media (max-width: 900px) {
+  .prf-grid--four {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .prf-grid--four {
+    grid-template-columns: 1fr;
+    max-width: 360px;
+  }
+}
+
+/* Responsive: 6-col grid */
+@media (max-width: 1200px) {
+  .prf-grid--six {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .prf-grid--six {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 400px) {
+  .prf-grid--six {
+    grid-template-columns: 1fr;
+    max-width: 360px;
+  }
+}
+
+/* Card */
+.prf-card {
+  border: 1px solid #d8dbe0;
+  background: #f3f4f6;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.prf-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(15, 23, 42, 0.1);
+}
+
+/* Photo */
+.prf-photo {
+  height: 220px;
+  overflow: hidden;
+  background: #e5e7eb;
+}
+
+.prf-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+/* Card body */
+.prf-body {
+  padding: 12px 14px 14px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.prf-position {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--blue-700);
+  margin-bottom: 3px;
+}
+
+.prf-name {
+  font-family: "Avenir Next", "Segoe UI", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #202327;
+  margin: 0 0 3px;
+  line-height: 1.25;
+}
+
+.prf-class {
+  font-size: 0.8rem;
+  color: var(--ink-500);
+  margin-bottom: 0;
+}
+
+.prf-quote {
+  font-size: 0.82rem;
+  font-style: italic;
+  color: #6b7280;
+  line-height: 1.5;
+  margin-top: auto;
+  padding-top: 6px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.prf-quote::before {
+  content: "\201C";
+}
+
+.prf-quote::after {
+  content: "\201D";
+}
+
+/* Entrance animation */
+.prf-card {
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+.prf-card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .prf-card {
+    opacity: 1;
+    transform: none;
+  }
+
+  .prf-card.is-visible {
+    transition: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .prf-photo {
+    height: 240px;
+  }
+}
+/* === End Prefects Page === */
