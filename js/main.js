@@ -8,7 +8,7 @@
     qs: (selector, scope = document) => scope.querySelector(selector),
     qsa: (selector, scope = document) => Array.from(scope.querySelectorAll(selector)),
     createId: (prefix = 'id') => `${prefix}-${Math.random().toString(36).slice(2, 10)}`,
-    isMobileNav: () => window.innerWidth < 960,
+    isMobileNav: () => window.innerWidth < 1100,
     getFocusable: (scope) => Utils.qsa(
       'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])',
       scope
@@ -21,11 +21,26 @@
     let body;
     let lastFocused;
 
+    const syncNavState = () => {
+      const isOpen = body.classList.contains('nav-open');
+      navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      navToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+
+      if (Utils.isMobileNav()) {
+        siteNav.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+        if (isOpen) siteNav.removeAttribute('inert');
+        else siteNav.setAttribute('inert', '');
+      } else {
+        siteNav.removeAttribute('aria-hidden');
+        siteNav.removeAttribute('inert');
+      }
+    };
+
     const trapFocus = (event) => {
       if (!Utils.isMobileNav() || !document.body.classList.contains('nav-open')) return;
       if (event.key !== 'Tab') return;
 
-      const focusable = Utils.getFocusable(siteNav);
+      const focusable = [navToggle, ...Utils.getFocusable(siteNav)];
       if (focusable.length === 0) return;
 
       const first = focusable[0];
@@ -42,8 +57,8 @@
 
     const openNav = () => {
       document.body.classList.add('nav-open');
-      navToggle.setAttribute('aria-expanded', 'true');
       lastFocused = document.activeElement;
+      syncNavState();
 
       const focusable = Utils.getFocusable(siteNav);
       if (focusable.length > 0) {
@@ -51,14 +66,16 @@
       }
     };
 
-    const closeNav = () => {
+    const closeNav = (restoreFocus = true) => {
+      const wasOpen = document.body.classList.contains('nav-open');
       document.body.classList.remove('nav-open');
-      navToggle.setAttribute('aria-expanded', 'false');
       Dropdowns.closeAll();
+      syncNavState();
 
-      if (lastFocused) {
+      if (wasOpen && restoreFocus && lastFocused) {
         lastFocused.focus();
       }
+      lastFocused = null;
     };
 
     const toggleNav = () => {
@@ -79,8 +96,9 @@
 
     const handleResize = () => {
       if (!Utils.isMobileNav() && document.body.classList.contains('nav-open')) {
-        closeNav();
+        closeNav(false);
       }
+      syncNavState();
     };
 
     const init = () => {
@@ -90,14 +108,18 @@
       if (!navToggle || !siteNav) return;
 
       navToggle.addEventListener('click', toggleNav);
+      siteNav.addEventListener('click', (event) => {
+        if (Utils.isMobileNav() && event.target.closest('a')) closeNav(false);
+      });
       document.addEventListener('click', handleDocumentClick);
       document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape') {
+        if (event.key === 'Escape' && document.body.classList.contains('nav-open')) {
           closeNav();
         }
         trapFocus(event);
       });
       window.addEventListener('resize', handleResize);
+      syncNavState();
     };
 
     return { init, closeNav };
@@ -522,7 +544,7 @@
       if (title) heroTitle.textContent = title;
       if (lede) heroLede.textContent = lede;
 
-      if (animate) animateHeroText();
+      if (animate && (title || lede)) animateHeroText();
     };
 
     const activate = (nextIndex) => {
@@ -544,6 +566,7 @@
 
     const start = () => {
       stop();
+      if (slides.length < 2 || document.hidden) return;
       timer = window.setInterval(() => activate(index + 1), 6000);
     };
 
@@ -603,8 +626,7 @@
         start();
       });
 
-      slider.addEventListener('mouseenter', stop);
-      slider.addEventListener('mouseleave', start);
+      document.addEventListener('visibilitychange', start);
 
       start();
     };
@@ -759,6 +781,54 @@
     return { init };
   })();
 
+  const InterfaceEnhancements = (() => {
+    const markCurrentPage = () => {
+      const currentPath = window.location.pathname.replace(/\/$/, '/index.html');
+      Utils.qsa('.site-nav a[href]').forEach((link) => {
+        const url = new URL(link.href, window.location.href);
+        if (url.pathname === currentPath) link.setAttribute('aria-current', 'page');
+      });
+    };
+
+    const initHeaderState = () => {
+      const header = Utils.qs('.site-header');
+      if (!header) return;
+      const update = () => header.classList.toggle('is-scrolled', window.scrollY > 12);
+      update();
+      window.addEventListener('scroll', update, { passive: true });
+    };
+
+    const initReveals = () => {
+      const items = Utils.qsa('[data-reveal]');
+      if (!items.length) return;
+
+      document.body.classList.add('reveal-ready');
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduceMotion || !('IntersectionObserver' in window)) {
+        items.forEach((item) => item.classList.add('is-revealed'));
+        return;
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-revealed');
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+
+      items.forEach((item) => observer.observe(item));
+    };
+
+    const init = () => {
+      markCurrentPage();
+      initHeaderState();
+      initReveals();
+    };
+
+    return { init };
+  })();
+
   const App = {
     init() {
       Navigation.init();
@@ -771,10 +841,18 @@
       HeroSlider.init();
       OrgsCarousel.init();
       Testimonials.init();
+      InterfaceEnhancements.init();
     },
   };
 
   document.addEventListener('DOMContentLoaded', () => {
+    try {
+      window.SagabComponents?.render();
+    } catch (error) {
+      console.error('Sagab shared components failed to render.', error);
+    }
+
+    // Page features must still initialize if an optional shell mount is absent.
     App.init();
   });
 })();
