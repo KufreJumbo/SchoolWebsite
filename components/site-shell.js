@@ -10,24 +10,32 @@
   const SOCIAL_ICONS = [
     {
       label: 'Facebook',
+      handle: 'sagabcollege',
+      href: 'https://web.facebook.com/sagabcollege',
       path: 'M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.6 1.6-1.6h1.7V4.8c-.3 0-1.5-.1-2.5-.1-2.5 0-4.3 1.5-4.3 4.4V11H7.2v3H10v8h3.5z',
     },
     {
       label: 'TikTok',
+      handle: '@sagab.schools',
+      href: 'https://www.tiktok.com/@sagab.schools?_r=1&_t=ZS-97VYuEHw3Me',
       path: 'M16.6 3c.2 1.7 1.2 3.2 2.7 4.1v3.2a8.1 8.1 0 0 1-2.7-.6v5.5a6.2 6.2 0 1 1-5.4-6.1v3.2a3.1 3.1 0 1 0 2.2 3V3h3.2z',
     },
     {
       label: 'LinkedIn',
+      handle: 'Sagab College &amp; Montessori',
+      href: 'https://www.linkedin.com/company/sagab-college-montessori/',
       path: 'M6.5 8.3H3.2V21h3.3V8.3zM4.8 3a1.9 1.9 0 1 0 0 3.8A1.9 1.9 0 0 0 4.8 3zM21 13.7c0-3.8-2-5.6-4.7-5.6-2.2 0-3.1 1.2-3.7 2V8.3H9.3V21h3.3v-6.3c0-1.7.3-3.3 2.4-3.3 2.1 0 2.1 1.9 2.1 3.4V21H21v-7.3z',
     },
     {
       label: 'YouTube',
+      handle: '@SAGAB_Schools',
+      href: 'https://www.youtube.com/@SAGAB_Schools',
       path: 'M21.6 7.2a2.8 2.8 0 0 0-2-2C17.8 4.7 12 4.7 12 4.7s-5.8 0-7.6.5a2.8 2.8 0 0 0-2 2A29 29 0 0 0 2 12a29 29 0 0 0 .4 4.8 2.8 2.8 0 0 0 2 2c1.8.5 7.6.5 7.6.5s5.8 0 7.6-.5a2.8 2.8 0 0 0 2-2A29 29 0 0 0 22 12a29 29 0 0 0-.4-4.8zM10 15.2V8.8l5.5 3.2-5.5 3.2z',
     },
   ];
 
-  const renderSocialLinks = (linkClass) => SOCIAL_ICONS.map(({ label, path }) => `
-    <a class="${linkClass}" href="#" aria-label="${label}" title="${label}">
+  const renderSocialLinks = (linkClass) => SOCIAL_ICONS.map(({ label, href, path }) => `
+    <a class="${linkClass}" href="${href}" aria-label="${label}" title="${label}"${href === '#' ? '' : ' target="_blank" rel="noopener"'}>
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="${path}"></path></svg>
     </a>
   `).join('');
@@ -49,10 +57,7 @@
           <nav id="site-nav" class="site-nav" aria-label="Primary">
             <ul class="nav-list">
               <li class="nav-item has-submenu">
-                <a class="nav-link" href="/pages/about.html">About</a>
-                <button class="submenu-toggle" aria-expanded="false" aria-controls="submenu-about">
-                  More <span class="submenu-indicator">&#9660;</span>
-                </button>
+                <button type="button" class="nav-link submenu-trigger" aria-expanded="false" aria-controls="submenu-about">About <span class="submenu-indicator" aria-hidden="true">&#9662;</span></button>
                 <ul id="submenu-about" class="submenu" aria-label="About submenu">
                   <li><a href="/pages/overview.html">Overview</a></li>
                   <li><a href="/pages/proprietress.html">Proprietress' Message</a></li>
@@ -63,10 +68,7 @@
                 </ul>
               </li>
               <li class="nav-item has-submenu">
-                <a class="nav-link" href="/pages/academics.html">Academics</a>
-                <button class="submenu-toggle" aria-expanded="false" aria-controls="submenu-academics">
-                  More <span class="submenu-indicator">&#9660;</span>
-                </button>
+                <button type="button" class="nav-link submenu-trigger" aria-expanded="false" aria-controls="submenu-academics">Academics <span class="submenu-indicator" aria-hidden="true">&#9662;</span></button>
                 <ul id="submenu-academics" class="submenu" aria-label="Academics submenu">
                   <li><a href="/pages/curriculum.html">Curriculum</a></li>
                   <li><a href="/pages/calendar.html">School Calendar</a></li>
@@ -74,10 +76,7 @@
                 </ul>
               </li>
               <li class="nav-item has-submenu">
-                <a class="nav-link" href="/pages/admissions.html">Admissions</a>
-                <button class="submenu-toggle" aria-expanded="false" aria-controls="submenu-admissions">
-                  More <span class="submenu-indicator">&#9660;</span>
-                </button>
+                <button type="button" class="nav-link submenu-trigger" aria-expanded="false" aria-controls="submenu-admissions">Admissions <span class="submenu-indicator" aria-hidden="true">&#9662;</span></button>
                 <ul id="submenu-admissions" class="submenu" aria-label="Admissions submenu">
                   <li><a href="/pages/admission-process.html">Admission Process</a></li>
                   <li><a href="/pages/tuition.html">Tuition &amp; Fees</a></li>
@@ -85,10 +84,7 @@
                 </ul>
               </li>
               <li class="nav-item has-submenu">
-                <a class="nav-link" href="/pages/life.html">School Life</a>
-                <button class="submenu-toggle" aria-expanded="false" aria-controls="submenu-life">
-                  More <span class="submenu-indicator">&#9660;</span>
-                </button>
+                <button type="button" class="nav-link submenu-trigger" aria-expanded="false" aria-controls="submenu-life">School Life <span class="submenu-indicator" aria-hidden="true">&#9662;</span></button>
                 <ul id="submenu-life" class="submenu" aria-label="School Life submenu">
                   <li><a href="/pages/counselling.html">Counselling &amp; Mentoring</a></li>
                   <li><a href="/pages/hostel.html">Hostel Life</a></li>
@@ -96,8 +92,8 @@
                   <li><a href="/pages/alumni.html">Alumni Network</a></li>
                 </ul>
               </li>
-              <li class="nav-item"><a class="nav-link" href="/pages/calendar.html">News and Events</a></li>
-              <li class="nav-item"><a class="nav-link" href="tel:+2347066297062">Contact</a></li>
+              <li class="nav-item"><a class="nav-link" href="/pages/news.html">News and Events</a></li>
+              <li class="nav-item"><a class="nav-link" href="/pages/contact.html">Contact</a></li>
             </ul>
 
             <div class="mobile-nav-socials" aria-label="Sagab Schools social media">
@@ -108,7 +104,7 @@
 
           <div class="header-actions" aria-label="Header actions">
             <div class="social-links" aria-label="Social links">${renderSocialLinks('social-link')}</div>
-            <a class="apply-btn" href="/pages/admissions.html">Apply Now</a>
+            <a class="apply-btn" href="/pages/admission-process.html">Apply Now</a>
           </div>
         </div>
       </header>
@@ -134,12 +130,12 @@
             <div class="footer-links-col">
               <h3>Quick Links</h3>
               <ul class="footer-links">
-                <li><a href="/pages/about.html">About Us</a></li>
-                <li><a href="/pages/academics.html">Academics</a></li>
-                <li><a href="/pages/admissions.html">Admissions</a></li>
+                <li><a href="/pages/overview.html">About Us</a></li>
+                <li><a href="/pages/curriculum.html">Academics</a></li>
+                <li><a href="/pages/admission-process.html">Admissions</a></li>
                 <li><a href="/pages/life.html">Campus Life</a></li>
-                <li><a href="/pages/calendar.html">News and Events</a></li>
-                <li><a href="tel:+2347066297062">Contact</a></li>
+                <li><a href="/pages/news.html">News and Events</a></li>
+                <li><a href="/pages/contact.html">Contact</a></li>
               </ul>
             </div>
 
@@ -173,7 +169,7 @@
             <div class="footer-legal">
               <a href="#">Privacy Policy</a>
               <a href="#">Terms of Service</a>
-              <a href="#">Site Map</a>
+              <a href="/sitemap.xml">Site Map</a>
             </div>
           </div>
         </div>
@@ -204,6 +200,28 @@
     });
   };
 
+  // Any page element marked data-social="Facebook" etc. gets that account's link, icon and handle.
+  const fillSocialSlots = () => {
+    document.querySelectorAll('[data-social]').forEach((element) => {
+      const social = SOCIAL_ICONS.find(({ label }) => label === element.dataset.social);
+      if (!social) return;
+      element.setAttribute('href', social.href);
+      if (social.href !== '#') {
+        element.setAttribute('target', '_blank');
+        element.setAttribute('rel', 'noopener');
+      }
+      const icon = element.querySelector('[data-social-icon]');
+      if (icon) icon.innerHTML = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${social.path}"></path></svg>`;
+      const handle = element.querySelector('[data-social-handle]');
+      if (handle) handle.innerHTML = social.handle;
+    });
+  };
+
   window.SagabComponents = Object.freeze({ render, siteRoot: siteRoot.href });
   render();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', fillSocialSlots);
+  } else {
+    fillSocialSlots();
+  }
 })();

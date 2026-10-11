@@ -165,7 +165,7 @@
     };
 
     const init = () => {
-      toggles = Utils.qsa('.submenu-toggle');
+      toggles = Utils.qsa('.submenu-toggle, .submenu-trigger');
       if (!toggles.length) return;
 
       toggles.forEach((toggle) => {
@@ -178,6 +178,10 @@
         });
 
         toggle.addEventListener('keydown', (event) => handleKeydown(event, toggle));
+      });
+
+      document.addEventListener('click', (event) => {
+        if (!event.target.closest('.has-submenu')) closeAll();
       });
     };
 

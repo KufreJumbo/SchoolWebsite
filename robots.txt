@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /pages/admin-login.html
+
+Sitemap: https://www.sagabschools.com/sitemap.xml
