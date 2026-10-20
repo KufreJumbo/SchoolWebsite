@@ -3,23 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="Sagab Schools is a private Montessori and secondary school in Solomade Estate, Ikorodu, Lagos, offering character-led education from nursery to SSS 3.">
+    <meta name="description" content="Sagab Schools is a private Montessori and secondary school in Solomade Estate, Ikorodu, Lagos, offering character-led education from pre-school to SSS 3.">
     <title>Sagab Schools | Private School in Ikorodu, Lagos</title>
     <link rel="preload" as="image" href="./images/hero-jun.jpg" fetchpriority="high">
     <link rel="canonical" href="https://www.sagabschools.com/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Sagab Schools">
     <meta property="og:title" content="Sagab Schools | Private School in Ikorodu, Lagos">
-    <meta property="og:description" content="Sagab Schools is a private Montessori and secondary school in Solomade Estate, Ikorodu, Lagos, offering character-led education from nursery to SSS 3.">
+    <meta property="og:description" content="Sagab Schools is a private Montessori and secondary school in Solomade Estate, Ikorodu, Lagos, offering character-led education from pre-school to SSS 3.">
     <meta property="og:url" content="https://www.sagabschools.com/">
     <meta property="og:image" content="https://www.sagabschools.com/images/hero-jun.jpg">
     <meta property="og:locale" content="en_NG">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Sagab Schools | Private School in Ikorodu, Lagos">
-    <meta name="twitter:description" content="Sagab Schools is a private Montessori and secondary school in Solomade Estate, Ikorodu, Lagos, offering character-led education from nursery to SSS 3.">
+    <meta name="twitter:description" content="Sagab Schools is a private Montessori and secondary school in Solomade Estate, Ikorodu, Lagos, offering character-led education from pre-school to SSS 3.">
     <meta name="twitter:image" content="https://www.sagabschools.com/images/hero-jun.jpg">
     <link rel="icon" type="image/png" href="./images/logo.png">
-    <link rel="stylesheet" href="./css/style.css?v=20260806">
+    <link rel="stylesheet" href="./css/style.css?v=20261018">
     
     <script type="application/ld+json">
     {
@@ -34,7 +34,7 @@
           "image": "https://www.sagabschools.com/images/hero-jun.jpg",
           "description": "Purposeful, character-led education from Montessori through College in Ikorodu, Lagos.",
           "foundingDate": "2005",
-          "email": "info@sagabschools.edu",
+          "email": "info@sagabschools.com",
           "telephone": ["+2347066297062", "+2348023376476"],
           "address": {
             "@type": "PostalAddress",
@@ -51,8 +51,9 @@
           ],
           "subOrganization": [
             {
-              "@type": "HighSchool",
+              "@type": ["MiddleSchool", "HighSchool"],
               "name": "Sagab College",
+              "description": "Junior secondary (JSS 1 – 3) and senior secondary (SSS 1 – 3), preparing students for the WASSCE and NECO examinations.",
               "address": {
                 "@type": "PostalAddress",
                 "streetAddress": "Plot 40/46 Bolajoko Oruku Street, off Odumbo Street, Solomade Estate",
@@ -62,11 +63,12 @@
               }
             },
             {
-              "@type": "Preschool",
+              "@type": ["Preschool", "ElementarySchool"],
               "name": "Sagab Montessori School",
+              "description": "Montessori pre-school and primary school.",
               "address": {
                 "@type": "PostalAddress",
-                "streetAddress": "Kudirat Bakare Street, beside Sagab College, off Abiodun Ogunleye Street, Solomade Estate",
+                "streetAddress": "17, Kudirat Bakare Street, beside Sagab College, off Abiodun Ogunleye Street, Solomade Estate",
                 "addressLocality": "Ikorodu",
                 "addressRegion": "Lagos State",
                 "addressCountry": "NG"
@@ -91,15 +93,20 @@
   <section class="homepage-hero" aria-labelledby="hero-title">
     <div class="hero-slider" data-hero-slider aria-hidden="true">
       <div class="hero-slide is-active" style="background-image: url('./images/hero-jun.jpg')"></div>
-      <div class="hero-slide hero-slide--montessori" style="background-image: url('./images/hero-mon.jpg')"></div>
-      <div class="hero-slide hero-slide--chess" style="background-image: url('./images/hero-home1.jpg')"></div>
-      <div class="hero-slide hero-slide--music" style="background-image: url('./images/hero-home2.jpg')"></div>
-      <div class="hero-slide hero-slide--play" style="background-image: url('./images/hero-mon1.jpg')"></div>
+      <!-- Photos 2-5 load one slide ahead (js/main.js) so they don't slow the first -->
+      <div class="hero-slide hero-slide--montessori" data-bg="./images/hero-mon.jpg"></div>
+      <div class="hero-slide hero-slide--chess" data-bg="./images/hero-home1.jpg"></div>
+      <div class="hero-slide hero-slide--music" data-bg="./images/hero-home2.jpg"></div>
+      <div class="hero-slide hero-slide--play" data-bg="./images/hero-mon1.jpg"></div>
     </div>
     <div class="hero-content">
-      <div class="hero-intro" data-reveal>
+      <div class="hero-intro">
         <p class="hero-tag"><span aria-hidden="true"></span> Private school · Ikorodu, Lagos</p>
-        <h1 id="hero-title">Excellence is not a destination. <em>It is our DNA.</em></h1>
+        <!-- Each word rises in turn; --w sets its place in the sequence -->
+        <h1 id="hero-title">
+          <span class="sg-word" style="--w:0">Excellence</span> <span class="sg-word" style="--w:1">is</span> <span class="sg-word" style="--w:2">not</span> <span class="sg-word" style="--w:3">a</span> <span class="sg-word" style="--w:4">destination.</span>
+          <em><span class="sg-word" style="--w:5">It</span> <span class="sg-word" style="--w:6">is</span> <span class="sg-word" style="--w:7">our</span> <span class="sg-word" style="--w:8"><span class="hero-underline">DNA</span>.</span></em>
+        </h1>
         <p class="hero-lede">Sagab Schools is a private Montessori and secondary school in Ikorodu, Lagos, where academic depth, character, leadership, and confidence grow together.</p>
         <div class="hero-actions">
           <a class="btn hero-cta" href="./pages/admission-process.html">Begin admission <span aria-hidden="true">→</span></a>
@@ -107,15 +114,15 @@
         </div>
       </div>
     </div>
-    <a class="hero-scroll" href="#discover"><span>Discover Sagab</span><span aria-hidden="true">↓</span></a>
+    <a class="hero-scroll" href="#discover"><span>Discover Sagab</span><span aria-hidden="true"><b>↓</b></span></a>
   </section>
 
   <section class="home-intro" id="discover" aria-labelledby="intro-title">
     <div class="home-shell home-intro-grid">
       <div class="home-editorial" data-reveal>
         <p class="section-eyebrow">Welcome to Sagab</p>
-        <h2 id="intro-title">Where excellence becomes a daily habit.</h2>
-        <p class="section-lede">Founded in 2005, Sagab Schools brings Sagab Montessori School and Sagab College together on neighbouring campuses in Solomade Estate, Ikorodu. We create the conditions for every learner to think deeply, act responsibly, and approach the future with confidence, from a strong Montessori foundation to an ambitious college experience.</p>
+        <h2 id="intro-title" data-split>Where excellence becomes a daily habit.</h2>
+        <p class="section-lede">Founded in 2005, Sagab Schools brings Sagab Montessori School and Sagab College together on neighbouring sites in Solomade Estate, Ikorodu. We create the conditions for every learner to think deeply, act responsibly, and approach the future with confidence, from a strong Montessori foundation to an ambitious college experience.</p>
         <a class="text-link" href="./pages/overview.html">About Sagab Schools <span aria-hidden="true">↗</span></a>
       </div>
       <figure class="home-intro-visual" data-reveal>
@@ -128,13 +135,13 @@
   <section class="home-pathways" aria-labelledby="pathways-title">
     <div class="home-shell">
       <div class="section-heading-row" data-reveal>
-        <div><p class="section-eyebrow">One school, every stage</p><h2 id="pathways-title">A connected learning journey.</h2></div>
-        <p>From nursery and primary to junior and senior secondary school, with age-appropriate teaching, personal guidance, and an enduring culture of excellence at every level.</p>
+        <div><p class="section-eyebrow">One school, every stage</p><h2 id="pathways-title" data-split>A connected learning journey.</h2></div>
+        <p>From pre-school and primary to junior and senior secondary school, with age-appropriate teaching, personal guidance, and an enduring culture of excellence at every level.</p>
       </div>
       <div class="pathway-grid">
         <a class="pathway-card" href="./pages/curriculum.html" data-reveal>
           <img src="./images/montessori1.jpg" alt="Young Sagab Montessori pupils learning together" width="4000" height="2256" loading="lazy">
-          <div><p>Nursery &amp; primary</p><h3>Montessori School</h3><span>Explore programme →</span></div>
+          <div><p>Pre-school &amp; primary</p><h3>Montessori School</h3><span>Explore programme →</span></div>
         </a>
         <a class="pathway-card" href="./pages/curriculum.html" data-reveal>
           <img src="./images/hero-jun.jpg" alt="Sagab students reading together" width="4000" height="2256" loading="lazy">
@@ -142,7 +149,7 @@
         </a>
         <a class="pathway-card" href="./pages/curriculum.html#stages" data-reveal>
           <img src="./images/hero-home3.jpg" alt="Sagab College students during a creative activity" width="4000" height="2256" loading="lazy">
-          <div><p>SSS 1 – 3 · WASSCE &amp; NECO</p><h3>Senior Secondary</h3><span>Explore pathways →</span></div>
+          <div><p>SSS 1 – 3 ·</p><h3>Senior Secondary</h3><span>Explore pathways →</span></div>
         </a>
       </div>
     </div>
@@ -152,7 +159,7 @@
     <div class="home-shell">
       <div class="pillars-heading" data-reveal>
         <p class="section-eyebrow section-eyebrow--light">The Sagab standard</p>
-        <h2 id="pillars-title">Prepared for school.<br>Prepared for life.</h2>
+        <h2 id="pillars-title" data-split>Prepared for school.<br>Prepared for life.</h2>
       </div>
       <div class="pillars-grid">
         <article data-reveal>
@@ -181,8 +188,8 @@
   <section class="home-experience" aria-labelledby="experience-title">
     <div class="home-shell">
       <div class="section-heading-row" data-reveal>
-        <div><p class="section-eyebrow">Life beyond lessons</p><h2 id="experience-title">Space to discover more.</h2></div>
-        <p>Libraries, science laboratories, sports and clubs on our Ikorodu campuses invite learners to read, experiment, collaborate, compete, and create.</p>
+        <div><p class="section-eyebrow">Life beyond lessons</p><h2 id="experience-title" data-split>Space to discover more.</h2></div>
+        <p>Libraries, science laboratories, sports and clubs at our Ikorodu schools invite learners to read, experiment, collaborate, compete, and create.</p>
       </div>
       <div class="experience-grid">
         <a class="experience-card experience-card--large" href="./pages/facilities.html" data-reveal>
@@ -202,11 +209,11 @@
   </section>
 
   <section class="home-cta" aria-labelledby="cta-title">
-    <img src="./images/banner.jpg" alt="" width="4000" height="2256" loading="lazy">
+    <img src="./images/banner.jpg" alt="" width="4000" height="2256" loading="lazy" data-parallax="0.12">
     <div class="home-shell home-cta-content" data-reveal>
       <p class="section-eyebrow section-eyebrow--light">Admissions</p>
-      <h2 id="cta-title">A remarkable education starts with one conversation.</h2>
-      <p>Admission to Sagab Montessori School and Sagab College takes four simple steps: enquire, apply, a short assessment, and welcome. See our <a href="./pages/tuition.html">tuition &amp; fees</a> or plan a visit to our campuses in Ikorodu.</p>
+      <h2 id="cta-title" data-split>A remarkable education starts with one conversation.</h2>
+      <p>Admission to Sagab Montessori School and Sagab College takes four simple steps: enquire, apply, a short assessment, and welcome. See our <a href="./pages/tuition.html">tuition &amp; fees</a> or plan a visit to our schools in Ikorodu.</p>
       <div class="hero-actions">
         <a class="btn hero-cta" href="./pages/admission-process.html">How to apply <span aria-hidden="true">→</span></a>
         <a class="btn hero-cta-ghost" href="tel:+2347066297062">Speak with admissions</a>
@@ -217,6 +224,6 @@
 
   <div data-component="footer"></div>
   <script src="./components/site-shell.js?v=20260806" defer></script>
-  <script src="./js/main.js?v=20260806" defer></script>
+  <script src="./js/main.js?v=20261018" defer></script>
 </body>
 </html>

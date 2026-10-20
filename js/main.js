@@ -9,6 +9,7 @@
     qsa: (selector, scope = document) => Array.from(scope.querySelectorAll(selector)),
     createId: (prefix = 'id') => `${prefix}-${Math.random().toString(36).slice(2, 10)}`,
     isMobileNav: () => window.innerWidth < 1100,
+    prefersReducedMotion: () => window.matchMedia('(prefers-reduced-motion: reduce)').matches,
     getFocusable: (scope) => Utils.qsa(
       'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])',
       scope
@@ -508,131 +509,367 @@
     return { init };
   })();
 
-  
+  // Homepage hero slideshow. Each photo stays up while its progress bar fills
+  // (a CSS animation); when the bar completes, the next photo cross-fades in.
   const HeroSlider = (() => {
-    let slider;
+    const FADE_MS = 1600; // keep in step with --hero-fade-duration in style.css
+    const loads = new Map();
+    const leaveTimers = new Map();
+    let hero;
     let slides = [];
-    let prevBtn;
-    let nextBtn;
-    let overlays;
-    let heroIntro;
-    let heroTitle;
-    let heroLede;
-    let dotsWrap;
-    let dots = [];
-    let timer;
+    let steps = [];
+    let toggle;
+    let counter;
     let index = 0;
+    let requested = 0;
+    let fadeMs = FADE_MS;
 
-    const syncDots = () => {
-      if (!dots.length) return;
-      dots.forEach((dot, idx) => {
-        const isActive = idx === index;
-        dot.classList.toggle('is-active', isActive);
-        dot.setAttribute('aria-current', isActive ? 'true' : 'false');
+    const pad = (number) => String(number).padStart(2, '0');
+
+    // Only the first photo is in the markup; the rest load one slide ahead so
+    // they never compete with the opening image.
+    const loadSlide = (slide) => {
+      const src = slide.dataset.bg;
+      if (!src) return Promise.resolve();
+      if (!loads.has(slide)) {
+        const image = new Image();
+        image.src = src;
+        loads.set(slide, image.decode()
+          .catch(() => {})
+          .then(() => {
+            slide.style.backgroundImage = `url("${src}")`;
+          }));
+      }
+      return loads.get(slide);
+    };
+
+    const syncControls = () => {
+      steps.forEach((step, stepIndex) => {
+        const isCurrent = stepIndex === index;
+        step.classList.toggle('is-active', isCurrent);
+        if (isCurrent) step.setAttribute('aria-current', 'true');
+        else step.removeAttribute('aria-current');
+      });
+      counter.textContent = `${pad(index + 1)} / ${pad(slides.length)}`;
+    };
+
+    const show = (target) => {
+      requested = (target + slides.length) % slides.length;
+      const next = requested;
+      if (next === index) return;
+
+      loadSlide(slides[next]).then(() => {
+        // A later click may have asked for a different photo while this one loaded.
+        if (next !== requested || next === index) return;
+
+        const outgoing = slides[index];
+        const incoming = slides[next];
+
+        outgoing.classList.remove('is-active');
+        outgoing.classList.add('is-leaving');
+        window.clearTimeout(leaveTimers.get(outgoing));
+        leaveTimers.set(outgoing, window.setTimeout(() => outgoing.classList.remove('is-leaving'), fadeMs));
+
+        window.clearTimeout(leaveTimers.get(incoming));
+        if (incoming.classList.contains('is-leaving')) {
+          // Restart its slow zoom instead of resuming it part-way through.
+          incoming.classList.remove('is-leaving');
+          void incoming.offsetWidth;
+        }
+        incoming.classList.add('is-active');
+
+        index = next;
+        syncControls();
+        loadSlide(slides[(index + 1) % slides.length]);
       });
     };
 
-    const animateHeroText = () => {
-      if (!heroIntro) return;
-      heroIntro.classList.remove('is-text-animating');
-      void heroIntro.offsetWidth;
-      heroIntro.classList.add('is-text-animating');
+    const setPaused = (paused) => {
+      hero.classList.toggle('is-paused', paused);
+      toggle.dataset.state = paused ? 'paused' : 'playing';
+      toggle.setAttribute('aria-label', paused ? 'Play slideshow' : 'Pause slideshow');
     };
 
-    const updateHeroText = (slideIndex, animate = true) => {
-      const activeSlide = slides[slideIndex];
-      if (!activeSlide || !heroTitle || !heroLede) return;
+    const buildControls = () => {
+      const controls = document.createElement('div');
+      controls.className = 'hero-controls';
 
-      const title = activeSlide.getAttribute('data-hero-title');
-      const lede = activeSlide.getAttribute('data-hero-lede');
-      if (title) heroTitle.textContent = title;
-      if (lede) heroLede.textContent = lede;
+      toggle = document.createElement('button');
+      toggle.type = 'button';
+      toggle.className = 'hero-toggle';
+      toggle.addEventListener('click', () => setPaused(!hero.classList.contains('is-paused')));
 
-      if (animate && (title || lede)) animateHeroText();
-    };
+      const stepList = document.createElement('div');
+      stepList.className = 'hero-steps';
+      stepList.setAttribute('role', 'group');
+      stepList.setAttribute('aria-label', 'Hero photos');
+      steps = slides.map((_, slideIndex) => {
+        const step = document.createElement('button');
+        step.type = 'button';
+        step.className = 'hero-step';
+        step.setAttribute('aria-label', `Show photo ${slideIndex + 1} of ${slides.length}`);
+        step.append(document.createElement('span'));
+        step.addEventListener('click', () => show(slideIndex));
+        stepList.append(step);
+        return step;
+      });
 
-    const activate = (nextIndex) => {
-      if (!slides.length) return;
-      slides[index].classList.remove('is-active');
-      slides[index].setAttribute('aria-hidden', 'true');
-      index = (nextIndex + slides.length) % slides.length;
-      slides[index].classList.add('is-active');
-      slides[index].setAttribute('aria-hidden', 'false');
-      syncDots();
-      updateHeroText(index);
+      // The active bar fills over one slide's duration; when it completes, move on.
+      stepList.addEventListener('animationend', (event) => {
+        if (event.animationName === 'sg-hero-progress') show(index + 1);
+      });
 
-      if (overlays) {
-        overlays.classList.remove('is-animating');
-        void overlays.offsetWidth;
-        overlays.classList.add('is-animating');
-      }
-    };
+      counter = document.createElement('span');
+      counter.className = 'hero-count';
+      counter.setAttribute('aria-hidden', 'true');
 
-    const start = () => {
-      stop();
-      if (slides.length < 2 || document.hidden) return;
-      timer = window.setInterval(() => activate(index + 1), 6000);
-    };
-
-    const stop = () => {
-      if (timer) {
-        window.clearInterval(timer);
-        timer = null;
-      }
+      controls.append(toggle, stepList, counter);
+      hero.insertBefore(controls, Utils.qs('.hero-scroll', hero));
     };
 
     const init = () => {
-      slider = Utils.qs('[data-hero-slider]');
+      hero = Utils.qs('.homepage-hero');
+      const slider = hero ? Utils.qs('[data-hero-slider]', hero) : null;
       if (!slider) return;
       slides = Utils.qsa('.hero-slide', slider);
-      if (!slides.length) return;
+      if (slides.length < 2) return;
 
-      overlays = Utils.qs('[data-hero-overlays]');
-      prevBtn = Utils.qs('[data-hero-prev]');
-      nextBtn = Utils.qs('[data-hero-next]');
-      dotsWrap = Utils.qs('[data-hero-dots]');
-      heroIntro = Utils.qs('.hero-intro');
-      heroTitle = Utils.qs('#hero-title');
-      heroLede = Utils.qs('.hero-lede');
+      fadeMs = Utils.prefersReducedMotion() ? 0 : FADE_MS;
+      index = Math.max(0, slides.findIndex((slide) => slide.classList.contains('is-active')));
+      requested = index;
+      slides[index].classList.add('is-active');
 
-      slides.forEach((slide, idx) => {
-        slide.setAttribute('aria-hidden', idx === index ? 'false' : 'true');
-      });
+      buildControls();
+      setPaused(false);
+      syncControls();
 
-      if (dotsWrap) {
-        dotsWrap.innerHTML = '';
-        dots = slides.map((_, idx) => {
-          const dot = document.createElement('button');
-          dot.className = 'hero-dot';
-          dot.type = 'button';
-          dot.setAttribute('aria-label', `Go to slide ${idx + 1}`);
-          dot.addEventListener('click', () => {
-            activate(idx);
-            start();
-          });
-          dotsWrap.appendChild(dot);
-          return dot;
-        });
-        syncDots();
+      // Freeze the slideshow while the hero is scrolled out of view.
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(([entry]) => {
+          hero.classList.toggle('is-offscreen', !entry.isIntersecting);
+        }).observe(hero);
       }
 
-      overlays?.classList.add('is-animating');
-      updateHeroText(index, false);
-      animateHeroText();
+      const preloadNext = () => loadSlide(slides[(index + 1) % slides.length]);
+      if (document.readyState === 'complete') preloadNext();
+      else window.addEventListener('load', preloadNext, { once: true });
+    };
 
-      prevBtn?.addEventListener('click', () => {
-        activate(index - 1);
-        start();
+    return { init };
+  })();
+
+  // Depth for the homepage hero: the photo drifts against the mouse and lags
+  // behind the scroll, while the headline eases away as you scroll past.
+  const HeroMotion = (() => {
+    const init = () => {
+      const hero = Utils.qs('.homepage-hero');
+      const slider = hero ? Utils.qs('.hero-slider', hero) : null;
+      const content = hero ? Utils.qs('.hero-content', hero) : null;
+      if (!slider || !content || Utils.prefersReducedMotion()) return;
+
+      const wideScreen = window.matchMedia('(min-width: 900px)');
+      const pointer = { x: 0, y: 0 };
+      const eased = { x: 0, y: 0 };
+      let height = hero.offsetHeight;
+      let lastProgress = -1;
+      let frame = null;
+
+      const render = () => {
+        frame = null;
+        eased.x += (pointer.x - eased.x) * 0.08;
+        eased.y += (pointer.y - eased.y) * 0.08;
+        const settling = Math.abs(pointer.x - eased.x) > 0.002 || Math.abs(pointer.y - eased.y) > 0.002;
+        const progress = Math.min(Math.max(window.scrollY / height, 0), 1);
+        if (!settling && progress === lastProgress) return;
+        lastProgress = progress;
+
+        slider.style.translate = `${(eased.x * -14).toFixed(2)}px ${(progress * height * 0.22 - eased.y * 10).toFixed(2)}px`;
+        content.style.translate = `0 ${(progress * -60).toFixed(2)}px`;
+        content.style.opacity = wideScreen.matches ? Math.max(1 - progress * 1.2, 0).toFixed(3) : '';
+        if (settling) request();
+      };
+
+      const request = () => {
+        if (!frame) frame = window.requestAnimationFrame(render);
+      };
+
+      window.addEventListener('scroll', request, { passive: true });
+      window.addEventListener('resize', () => {
+        height = hero.offsetHeight;
+        lastProgress = -1;
+        request();
       });
 
-      nextBtn?.addEventListener('click', () => {
-        activate(index + 1);
-        start();
+      if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        hero.addEventListener('pointermove', (event) => {
+          if (event.pointerType !== 'mouse') return;
+          const rect = hero.getBoundingClientRect();
+          pointer.x = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
+          pointer.y = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
+          request();
+        });
+        hero.addEventListener('pointerleave', () => {
+          pointer.x = 0;
+          pointer.y = 0;
+          request();
+        });
+      }
+
+      request();
+    };
+
+    return { init };
+  })();
+
+  // Background photos marked data-parallax drift a little slower than the page.
+  const Parallax = (() => {
+    const init = () => {
+      const items = Utils.qsa('[data-parallax]');
+      if (!items.length || Utils.prefersReducedMotion() || !('IntersectionObserver' in window)) return;
+
+      const visible = new Set();
+      let frame = null;
+
+      const render = () => {
+        frame = null;
+        const viewportCentre = window.innerHeight / 2;
+        visible.forEach((item) => {
+          const box = item.parentElement.getBoundingClientRect();
+          const speed = parseFloat(item.dataset.parallax) || 0.12;
+          // The photo overhangs its frame by 14% top and bottom (style.css).
+          const limit = box.height * 0.13;
+          const shift = (viewportCentre - (box.top + box.height / 2)) * speed;
+          item.style.translate = `0 ${Math.max(-limit, Math.min(limit, shift)).toFixed(1)}px`;
+        });
+      };
+
+      const request = () => {
+        if (!frame && visible.size) frame = window.requestAnimationFrame(render);
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) visible.add(entry.target);
+          else visible.delete(entry.target);
+        });
+        request();
       });
 
-      document.addEventListener('visibilitychange', start);
+      items.forEach((item) => observer.observe(item));
+      window.addEventListener('scroll', request, { passive: true });
+      window.addEventListener('resize', request);
+    };
 
-      start();
+    return { init };
+  })();
+
+  // Scroll reveals. Blocks marked data-reveal (or every child of a
+  // data-reveal-group) animate in as they reach the viewport; blocks arriving
+  // together are staggered top-to-bottom, left-to-right.
+  const Reveals = (() => {
+    const STAGGER_MS = 90;
+    const MAX_STAGGER_STEPS = 6;
+    const FIRST_BATCH_DELAY_MS = 250; // let the page banner lead on arrival
+
+    const sitsInClippingFrame = (img, item) => {
+      for (let node = img.parentElement; node; node = node.parentElement) {
+        const { overflowX } = window.getComputedStyle(node);
+        if (overflowX === 'hidden' || overflowX === 'clip') return true;
+        if (node === item) return false;
+      }
+      return false;
+    };
+
+    // Image-led blocks open like a curtain. When the photo sits in a clipping
+    // frame it can also settle from a gentle zoom without spilling out.
+    const tagMedia = (item) => {
+      const isMedia = item.matches('figure, picture')
+        || Array.from(item.children).some((child) => child.matches('img, picture, figure'));
+      if (!isMedia) return;
+      const img = item.querySelector('img');
+      item.setAttribute('data-reveal-media', img && sitsInClippingFrame(img, item) ? 'zoom' : 'wipe');
+    };
+
+    // Wraps each word of a data-split heading so the words can rise in turn.
+    const splitWords = (element) => {
+      let count = 0;
+      const walk = (node) => {
+        Array.from(node.childNodes).forEach((child) => {
+          if (child.nodeType === Node.ELEMENT_NODE) {
+            walk(child);
+            return;
+          }
+          if (child.nodeType !== Node.TEXT_NODE || !child.textContent.trim()) return;
+
+          const fragment = document.createDocumentFragment();
+          child.textContent.split(/([ \t\n\r]+)/).forEach((part) => {
+            if (!part) return;
+            if (!part.trim()) {
+              fragment.append(part);
+              return;
+            }
+            const word = document.createElement('span');
+            word.className = 'sg-word';
+            word.style.setProperty('--w', count);
+            word.textContent = part;
+            fragment.append(word);
+            count += 1;
+          });
+          child.replaceWith(fragment);
+        });
+      };
+      walk(element);
+    };
+
+    const init = () => {
+      Utils.qsa('[data-reveal-group]').forEach((group) => {
+        Array.from(group.children).forEach((child) => {
+          if (!child.hasAttribute('data-reveal')) child.setAttribute('data-reveal', '');
+        });
+      });
+
+      const items = Utils.qsa('[data-reveal]');
+      if (!items.length) return;
+      // Nothing is hidden unless .reveal-ready is set, so these visitors
+      // simply see the finished page.
+      if (Utils.prefersReducedMotion() || !('IntersectionObserver' in window)) return;
+
+      items.forEach(tagMedia);
+      Utils.qsa('[data-split]').forEach(splitWords);
+      document.body.classList.add('reveal-ready');
+
+      let firstBatch = true;
+      const observer = new IntersectionObserver((entries) => {
+        const baseDelay = firstBatch ? FIRST_BATCH_DELAY_MS : 0;
+        firstBatch = false;
+
+        const arriving = entries.filter((entry) => entry.isIntersecting);
+        arriving.forEach((entry) => {
+          entry.target.classList.add('is-revealed');
+          observer.unobserve(entry.target);
+        });
+
+        // Only blocks actually on screen are staggered; ones already scrolled
+        // past (a jump to a lower section, a reload part-way down) just appear.
+        arriving
+          .filter((entry) => entry.boundingClientRect.bottom > 0)
+          .sort((a, b) => {
+            const rowA = Math.round(a.boundingClientRect.top / 24);
+            const rowB = Math.round(b.boundingClientRect.top / 24);
+            return (rowA - rowB) || (a.boundingClientRect.left - b.boundingClientRect.left);
+          })
+          .forEach((entry, order) => {
+            const delay = baseDelay + Math.min(order, MAX_STAGGER_STEPS) * STAGGER_MS;
+            entry.target.style.setProperty('--reveal-delay', `${delay}ms`);
+          });
+      }, {
+        // The huge top margin counts everything above the screen as arrived, so
+        // nothing is left invisible behind a jump; below the screen, blocks wait
+        // until they are 8% clear of the bottom edge.
+        rootMargin: '100000px 0px -8% 0px',
+      });
+
+      items.forEach((item) => observer.observe(item));
     };
 
     return { init };
@@ -802,32 +1039,9 @@
       window.addEventListener('scroll', update, { passive: true });
     };
 
-    const initReveals = () => {
-      const items = Utils.qsa('[data-reveal]');
-      if (!items.length) return;
-
-      document.body.classList.add('reveal-ready');
-      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (reduceMotion || !('IntersectionObserver' in window)) {
-        items.forEach((item) => item.classList.add('is-revealed'));
-        return;
-      }
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add('is-revealed');
-          observer.unobserve(entry.target);
-        });
-      }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
-
-      items.forEach((item) => observer.observe(item));
-    };
-
     const init = () => {
       markCurrentPage();
       initHeaderState();
-      initReveals();
     };
 
     return { init };
@@ -843,9 +1057,12 @@
       Lightbox.init();
       Filtering.init();
       HeroSlider.init();
+      HeroMotion.init();
+      Parallax.init();
       OrgsCarousel.init();
       Testimonials.init();
       InterfaceEnhancements.init();
+      Reveals.init();
     },
   };
 

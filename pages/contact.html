@@ -4,21 +4,100 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Contact Sagab Schools | Ikorodu, Lagos</title>
-  <meta name="description" content="Call, email or visit Sagab Schools. Find addresses and directions for our Montessori and College campuses in Solomade Estate, Ikorodu, Lagos.">
+  <meta name="description" content="Call, email or visit Sagab Schools. Find addresses and directions for our Montessori School and College in Solomade Estate, Ikorodu, Lagos.">
   <link rel="canonical" href="https://www.sagabschools.com/pages/contact.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Sagab Schools">
   <meta property="og:title" content="Contact Sagab Schools | Ikorodu, Lagos">
-  <meta property="og:description" content="Call, email or visit Sagab Schools. Find addresses and directions for our Montessori and College campuses in Solomade Estate, Ikorodu, Lagos.">
+  <meta property="og:description" content="Call, email or visit Sagab Schools. Find addresses and directions for our Montessori School and College in Solomade Estate, Ikorodu, Lagos.">
   <meta property="og:url" content="https://www.sagabschools.com/pages/contact.html">
   <meta property="og:image" content="https://www.sagabschools.com/images/hero-jun.jpg">
   <meta property="og:locale" content="en_NG">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Contact Sagab Schools | Ikorodu, Lagos">
-  <meta name="twitter:description" content="Call, email or visit Sagab Schools. Find addresses and directions for our Montessori and College campuses in Solomade Estate, Ikorodu, Lagos.">
+  <meta name="twitter:description" content="Call, email or visit Sagab Schools. Find addresses and directions for our Montessori School and College in Solomade Estate, Ikorodu, Lagos.">
   <meta name="twitter:image" content="https://www.sagabschools.com/images/hero-jun.jpg">
   <link rel="icon" type="image/png" href="../images/logo.png">
-  <link rel="stylesheet" href="../css/style.css?v=20260806">
+  <link rel="stylesheet" href="../css/style.css?v=20261019c">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ContactPage",
+        "@id": "https://www.sagabschools.com/pages/contact.html#webpage",
+        "url": "https://www.sagabschools.com/pages/contact.html",
+        "name": "Contact Sagab Schools",
+        "isPartOf": {
+          "@id": "https://www.sagabschools.com/#website"
+        },
+        "mainEntity": {
+          "@id": "https://www.sagabschools.com/#organization"
+        }
+      },
+      {
+        "@type": "EducationalOrganization",
+        "@id": "https://www.sagabschools.com/#organization",
+        "name": "Sagab Schools",
+        "url": "https://www.sagabschools.com/",
+        "logo": "https://www.sagabschools.com/images/logo.png",
+        "image": "https://www.sagabschools.com/images/hero-jun.jpg",
+        "description": "Purposeful, character-led education from Montessori through College in Ikorodu, Lagos.",
+        "foundingDate": "2005",
+        "email": "info@sagabschools.com",
+        "telephone": [
+          "+2347066297062",
+          "+2348023376476"
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Plot 40/46 Bolajoko Oruku Street, off Odumbo Street, Solomade Estate",
+          "addressLocality": "Ikorodu",
+          "addressRegion": "Lagos State",
+          "addressCountry": "NG"
+        },
+        "sameAs": [
+          "https://web.facebook.com/sagabcollege",
+          "https://www.tiktok.com/@sagab.schools",
+          "https://www.linkedin.com/company/sagab-college-montessori/",
+          "https://www.youtube.com/@SAGAB_Schools"
+        ],
+        "subOrganization": [
+          {
+            "@type": [
+              "MiddleSchool",
+              "HighSchool"
+            ],
+            "name": "Sagab College",
+            "description": "Junior secondary (JSS 1 – 3) and senior secondary (SSS 1 – 3), preparing students for the WASSCE and NECO examinations.",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Plot 40/46 Bolajoko Oruku Street, off Odumbo Street, Solomade Estate",
+              "addressLocality": "Ikorodu",
+              "addressRegion": "Lagos State",
+              "addressCountry": "NG"
+            }
+          },
+          {
+            "@type": [
+              "Preschool",
+              "ElementarySchool"
+            ],
+            "name": "Sagab Montessori School",
+            "description": "Montessori pre-school and primary school.",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "17, Kudirat Bakare Street, beside Sagab College, off Abiodun Ogunleye Street, Solomade Estate",
+              "addressLocality": "Ikorodu",
+              "addressRegion": "Lagos State",
+              "addressCountry": "NG"
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <div data-component="header"></div>
@@ -32,29 +111,33 @@
     <div class="inner-page-content">
       <section class="inner-page-section contact-section" aria-labelledby="contact-heading">
         <div class="inner-shell">
-          <div class="contact-heading">
+          <div class="contact-heading" data-reveal>
             <p class="section-eyebrow">Montessori &amp; College</p>
-            <h2 id="contact-heading">Find the right campus and get in touch.</h2>
-            <p>Our Montessori and College campuses are both in Solomade Estate, Ikorodu. Choose a campus below for its address and directions.</p>
+            <h2 id="contact-heading">Find the right school and get in touch.</h2>
+            <p>Our Montessori School and College are both in Solomade Estate, Ikorodu. Choose a school below to see it on the map.</p>
           </div>
 
           <div class="contact-layout">
             <div class="contact-campus-list">
-              <article class="contact-campus-card">
+              <!-- data-map-query is what the map searches for. Google Maps has no listing for the Montessori yet,
+                   so it uses Sagab College's pin next door; replace it with the Montessori's own "latitude,longitude". -->
+              <article class="contact-campus-card" data-reveal data-map-query="6.6094757,3.4932269" data-map-name="Sagab Montessori School">
                 <span class="contact-campus-label">Early years &amp; primary</span>
-                <h3>Montessori</h3>
-                <p>Kudirat Bakare Street, beside Sagab College, off Abiodun Ogunleye Street, Solomade Estate, Ikorodu, Lagos.</p>
-                <a class="contact-directions" href="https://www.google.com/maps/search/?api=1&amp;query=Kudirat+Bakare+Street%2C+Solomade+Estate%2C+Ikorodu%2C+Lagos" target="_blank" rel="noopener">Get directions <span aria-hidden="true">↗</span></a>
+                <span class="contact-campus-map-state" aria-hidden="true">Show on map</span>
+                <h3><button class="contact-campus-select" type="button" aria-controls="contact-map" aria-pressed="false" aria-label="Show Montessori on the map">Montessori</button></h3>
+                <p>17, Kudirat Bakare Street, beside Sagab College, off Abiodun Ogunleye Street, Solomade Estate, Ikorodu, Lagos.</p>
+                <a class="contact-directions" href="https://www.google.com/maps/search/?api=1&amp;query=6.6094757%2C3.4932269" target="_blank" rel="noopener">Get directions <span aria-hidden="true">↗</span></a>
               </article>
 
-              <article class="contact-campus-card">
+              <article class="contact-campus-card is-active" data-reveal data-map-query="Sagab College, Plot 40/46 Bolajoko Oruku Street, Solomade Estate, Ikorodu, Lagos" data-map-name="Sagab College">
                 <span class="contact-campus-label">Secondary education</span>
-                <h3>College</h3>
+                <span class="contact-campus-map-state" aria-hidden="true">On the map</span>
+                <h3><button class="contact-campus-select" type="button" aria-controls="contact-map" aria-pressed="true" aria-label="Show College on the map">College</button></h3>
                 <p>Plot 40/46 Bolajoko Oruku Street, off Odumbo Street, Solomade Estate, Ikorodu, Lagos State.</p>
-                <a class="contact-directions" href="https://www.google.com/maps/search/?api=1&amp;query=Plot+40%2F46+Bolajoko+Oruku+Street%2C+Ikorodu%2C+Lagos" target="_blank" rel="noopener">Get directions <span aria-hidden="true">↗</span></a>
+                <a class="contact-directions" href="https://www.google.com/maps/search/?api=1&amp;query=Sagab+College%2C+Plot+40%2F46+Bolajoko+Oruku+Street%2C+Solomade+Estate%2C+Ikorodu%2C+Lagos" target="_blank" rel="noopener">Get directions <span aria-hidden="true">↗</span></a>
               </article>
 
-              <div class="contact-school-details">
+              <div class="contact-school-details" data-reveal>
                 <div>
                   <h3>Call us</h3>
                   <a href="tel:+2347066297062">+234 706 629 7062</a>
@@ -62,15 +145,15 @@
                 </div>
                 <div>
                   <h3>Email</h3>
-                  <a href="mailto:info@sagabschools.edu">info@sagabschools.edu</a>
+                  <a href="mailto:info@sagabschools.com">info@sagabschools.com</a>
                 </div>
                 <a class="btn contact-appointment" href="/pages/admission-process.html">Enquire about admissions <span aria-hidden="true">→</span></a>
               </div>
             </div>
 
-            <div class="contact-map-wrap">
-              <iframe class="contact-map" title="Map showing Sagab Schools campuses in Ikorodu, Lagos" src="https://maps.google.com/maps?q=Solomade%20Estate%2C%20Ikorodu%2C%20Lagos&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
-              <p class="contact-map-caption">Both campuses are located in Solomade Estate, Ikorodu.</p>
+            <div class="contact-map-wrap" data-reveal>
+              <iframe class="contact-map" id="contact-map" title="Map showing Sagab College in Ikorodu, Lagos" src="https://maps.google.com/maps?q=Sagab%20College%2C%20Plot%2040%2F46%20Bolajoko%20Oruku%20Street%2C%20Solomade%20Estate%2C%20Ikorodu%2C%20Lagos&z=17&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+              <p class="contact-map-caption" aria-live="polite">Showing <strong class="contact-map-name">Sagab College</strong>. Choose a school to switch the map.</p>
             </div>
           </div>
         </div>
@@ -81,6 +164,9 @@
   <div data-component="footer"></div>
 
   <script src="../components/site-shell.js?v=20260806" defer></script>
-  <script src="../js/main.js?v=20260806" defer></script>
+  <script src="../js/main.js?v=20261018" defer></script>
+  <script>
+    (() => { const cards = Array.from(document.querySelectorAll('.contact-campus-card[data-map-query]')); const map = document.getElementById('contact-map'); const mapName = document.querySelector('.contact-map-name'); if (!map || !cards.length) return; const show = (card) => { const name = card.dataset.mapName; cards.forEach((item) => { const selected = item === card; item.classList.toggle('is-active', selected); item.querySelector('.contact-campus-select').setAttribute('aria-pressed', String(selected)); item.querySelector('.contact-campus-map-state').textContent = selected ? 'On the map' : 'Show on map'; }); const src = `https://maps.google.com/maps?q=${encodeURIComponent(card.dataset.mapQuery)}&z=17&output=embed`; if (map.src !== src) map.src = src; map.title = `Map showing ${name} in Ikorodu, Lagos`; if (mapName) mapName.textContent = name; }; cards.forEach((card) => { card.querySelector('.contact-campus-select').addEventListener('click', () => show(card)); }); })();
+  </script>
 </body>
 </html>

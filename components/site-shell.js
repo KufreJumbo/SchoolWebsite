@@ -73,6 +73,7 @@
                   <li><a href="/pages/curriculum.html">Curriculum</a></li>
                   <li><a href="/pages/calendar.html">School Calendar</a></li>
                   <li><a href="/pages/prefects.html">Prefects</a></li>
+                  <li><a href="https://sagab.schulup.com" target="_blank" rel="noopener noreferrer">Portal</a></li>
                 </ul>
               </li>
               <li class="nav-item has-submenu">
@@ -130,12 +131,13 @@
             <div class="footer-links-col">
               <h3>Quick Links</h3>
               <ul class="footer-links">
-                <li><a href="/pages/overview.html">About Us</a></li>
-                <li><a href="/pages/curriculum.html">Academics</a></li>
-                <li><a href="/pages/admission-process.html">Admissions</a></li>
-                <li><a href="/pages/life.html">Campus Life</a></li>
-                <li><a href="/pages/news.html">News and Events</a></li>
-                <li><a href="/pages/contact.html">Contact</a></li>
+                <li><a href="/pages/admission-process.html">Admission Process</a></li>
+                <li><a href="/pages/tuition.html">School Fees</a></li>
+                <li><a href="/pages/calendar.html">School Calendar</a></li>
+                <li><a href="/pages/curriculum.html">Curriculum</a></li>
+                <li><a href="/pages/hostel.html">Hostel</a></li>
+                <li><a href="https://sagab.schulup.com" target="_blank" rel="noopener noreferrer">Portal</a></li>
+                <li><a href="/pages/contact.html">Contact Us</a></li>
               </ul>
             </div>
 
@@ -146,7 +148,7 @@
                   <span class="contact-icon" aria-hidden="true">
                     <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"></path></svg>
                   </span>
-                  <span><strong>College:</strong><br>Plot 40/46 Bolajoko Oruku Street, off Odumbo Street, Solomade Estate, Ikorodu, Lagos State.<br><br><strong>Montessori:</strong><br>Kudirat Bakare Street, Beside Sagab College, Off Abiodun Ogunleye Street, Solomade Estate, Ikorodu, Lagos.</span>
+                  <span><strong>College:</strong><br>Plot 40/46 Bolajoko Oruku Street, off Odumbo Street, Solomade Estate, Ikorodu, Lagos State.<br><br><strong>Montessori:</strong><br>17, Kudirat Bakare Street, Beside Sagab College, Off Abiodun Ogunleye Street, Solomade Estate, Ikorodu, Lagos.</span>
                 </li>
                 <li>
                   <span class="contact-icon" aria-hidden="true">
@@ -158,7 +160,7 @@
                   <span class="contact-icon" aria-hidden="true">
                     <svg viewBox="0 0 24 24"><path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2zm0 2 8 5 8-5"></path></svg>
                   </span>
-                  <span><a href="mailto:info@sagabschools.edu">info@sagabschools.edu</a></span>
+                  <span><a href="mailto:info@sagabschools.com">info@sagabschools.com</a></span>
                 </li>
               </ul>
             </div>
