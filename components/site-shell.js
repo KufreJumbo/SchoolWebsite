@@ -169,8 +169,6 @@
           <div class="footer-bottom">
             <span>&copy; 2026 Sagab Schools. All rights reserved.</span>
             <div class="footer-legal">
-              <a href="#">Privacy Policy</a>
-              <a href="#">Terms of Service</a>
               <a href="/sitemap.xml">Site Map</a>
             </div>
           </div>

@@ -11,14 +11,16 @@
   <meta property="og:title" content="Contact Sagab Schools | Ikorodu, Lagos">
   <meta property="og:description" content="Call, email or visit Sagab Schools. Find addresses and directions for our Montessori School and College in Solomade Estate, Ikorodu, Lagos.">
   <meta property="og:url" content="https://www.sagabschools.com/pages/contact.html">
-  <meta property="og:image" content="https://www.sagabschools.com/images/hero-jun.jpg">
+  <meta property="og:image" content="https://www.sagabschools.com/images/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta property="og:locale" content="en_NG">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Contact Sagab Schools | Ikorodu, Lagos">
   <meta name="twitter:description" content="Call, email or visit Sagab Schools. Find addresses and directions for our Montessori School and College in Solomade Estate, Ikorodu, Lagos.">
-  <meta name="twitter:image" content="https://www.sagabschools.com/images/hero-jun.jpg">
+  <meta name="twitter:image" content="https://www.sagabschools.com/images/og-image.jpg">
   <link rel="icon" type="image/png" href="../images/logo.png">
-  <link rel="stylesheet" href="../css/style.css?v=20261019c">
+  <link rel="stylesheet" href="../css/style.css?v=20261023">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -163,7 +165,7 @@
 
   <div data-component="footer"></div>
 
-  <script src="../components/site-shell.js?v=20260806" defer></script>
+  <script src="../components/site-shell.js?v=20261023" defer></script>
   <script src="../js/main.js?v=20261018" defer></script>
   <script>
     (() => { const cards = Array.from(document.querySelectorAll('.contact-campus-card[data-map-query]')); const map = document.getElementById('contact-map'); const mapName = document.querySelector('.contact-map-name'); if (!map || !cards.length) return; const show = (card) => { const name = card.dataset.mapName; cards.forEach((item) => { const selected = item === card; item.classList.toggle('is-active', selected); item.querySelector('.contact-campus-select').setAttribute('aria-pressed', String(selected)); item.querySelector('.contact-campus-map-state').textContent = selected ? 'On the map' : 'Show on map'; }); const src = `https://maps.google.com/maps?q=${encodeURIComponent(card.dataset.mapQuery)}&z=17&output=embed`; if (map.src !== src) map.src = src; map.title = `Map showing ${name} in Ikorodu, Lagos`; if (mapName) mapName.textContent = name; }; cards.forEach((card) => { card.querySelector('.contact-campus-select').addEventListener('click', () => show(card)); }); })();
