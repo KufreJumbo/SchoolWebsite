@@ -90,8 +90,8 @@
                   <li><a href="/pages/counselling.html">Counselling &amp; Mentoring</a></li>
                   <li><a href="/pages/hostel.html">Hostel Life</a></li>
                   <li><a href="/pages/extracurricular.html">Extra-Curricular</a></li>
-                  <li><a href="/pages/alumni.html">Alumni Network</a></li>
                   <li><a href="/pages/pta-ptf.html">PTA &amp; PTF</a></li>
+                  <li><a href="/pages/alumni.html">Alumni Network</a></li>
                 </ul>
               </li>
               <li class="nav-item"><a class="nav-link" href="/pages/news.html">News and Events</a></li>
