@@ -91,6 +91,7 @@
                   <li><a href="/pages/hostel.html">Hostel Life</a></li>
                   <li><a href="/pages/extracurricular.html">Extra-Curricular</a></li>
                   <li><a href="/pages/alumni.html">Alumni Network</a></li>
+                  <li><a href="/pages/pta-ptf.html">PTA &amp; PTF</a></li>
                 </ul>
               </li>
               <li class="nav-item"><a class="nav-link" href="/pages/news.html">News and Events</a></li>
@@ -187,6 +188,26 @@
     });
   };
 
+  const resolveDocumentSitePaths = () => {
+    const siteBase = (() => {
+      const current = new URL(window.location.href);
+      const path = current.pathname;
+      if (path.includes('/pages/')) return new URL('../', current.href).href;
+      return new URL('.', current.href).href;
+    })();
+
+    document.querySelectorAll('[href^="/"], [src^="/"]').forEach((element) => {
+      if (element.dataset.rootResolved === 'true') return;
+      const attribute = element.hasAttribute('href') ? 'href' : 'src';
+      const value = element.getAttribute(attribute);
+      if (!value || value.startsWith('//') || !value.startsWith('/')) return;
+
+      const resolved = new URL(value.slice(1), siteBase).href;
+      element.setAttribute(attribute, resolved);
+      element.dataset.rootResolved = 'true';
+    });
+  };
+
   const render = () => {
     Object.entries(templates).forEach(([name, markup]) => {
       const mount = document.querySelector(`[data-component="${name}"]`);
@@ -219,6 +240,7 @@
 
   window.SagabComponents = Object.freeze({ render, siteRoot: siteRoot.href });
   render();
+  resolveDocumentSitePaths();
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', fillSocialSlots);
   } else {
