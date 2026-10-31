@@ -45,7 +45,7 @@
       <header class="site-header">
         <a class="skip-link" href="#main-content">Skip to main content</a>
         <div class="header-inner">
-          <a class="brand" href="/index.html">
+          <a class="brand" href="/">
             <img class="brand-logo" src="/images/logo.png" alt="Sagab Schools logo">
             <span class="brand-title">Sagab Schools</span>
           </a>
@@ -59,43 +59,43 @@
               <li class="nav-item has-submenu">
                 <button type="button" class="nav-link submenu-trigger" aria-expanded="false" aria-controls="submenu-about">About <span class="submenu-indicator" aria-hidden="true">&#9662;</span></button>
                 <ul id="submenu-about" class="submenu" aria-label="About submenu">
-                  <li><a href="/pages/overview.html">Overview</a></li>
-                  <li><a href="/pages/proprietress.html">Proprietress' Message</a></li>
-                  <li><a href="/pages/governors.html">Board of Governors</a></li>
-                  <li><a href="/pages/staff.html">Our Staff</a></li>
-                  <li><a href="/pages/career.html">Career Opportunities</a></li>
-                  <li><a href="/pages/facilities.html">Facilities</a></li>
+                  <li><a href="/pages/overview">Overview</a></li>
+                  <li><a href="/pages/proprietress">Proprietress' Message</a></li>
+                  <li><a href="/pages/governors">Board of Governors</a></li>
+                  <li><a href="/pages/staff">Our Staff</a></li>
+                  <li><a href="/pages/career">Career Opportunities</a></li>
+                  <li><a href="/pages/facilities">Facilities</a></li>
                 </ul>
               </li>
               <li class="nav-item has-submenu">
                 <button type="button" class="nav-link submenu-trigger" aria-expanded="false" aria-controls="submenu-academics">Academics <span class="submenu-indicator" aria-hidden="true">&#9662;</span></button>
                 <ul id="submenu-academics" class="submenu" aria-label="Academics submenu">
-                  <li><a href="/pages/curriculum.html">Curriculum</a></li>
-                  <li><a href="/pages/calendar.html">School Calendar</a></li>
-                  <li><a href="/pages/prefects.html">Prefects</a></li>
+                  <li><a href="/pages/curriculum">Curriculum</a></li>
+                  <li><a href="/pages/calendar">School Calendar</a></li>
+                  <li><a href="/pages/prefects">Prefects</a></li>
                   <li><a href="https://sagab.schulup.com" target="_blank" rel="noopener noreferrer">Portal</a></li>
                 </ul>
               </li>
               <li class="nav-item has-submenu">
                 <button type="button" class="nav-link submenu-trigger" aria-expanded="false" aria-controls="submenu-admissions">Admissions <span class="submenu-indicator" aria-hidden="true">&#9662;</span></button>
                 <ul id="submenu-admissions" class="submenu" aria-label="Admissions submenu">
-                  <li><a href="/pages/admission-process.html">Admission Process</a></li>
-                  <li><a href="/pages/tuition.html">Tuition &amp; Fees</a></li>
-                  <li><a href="/pages/summer-school.html">Summer School</a></li>
+                  <li><a href="/pages/admission-process">Admission Process</a></li>
+                  <li><a href="/pages/tuition">Tuition &amp; Fees</a></li>
+                  <li><a href="/pages/summer-school">Summer School</a></li>
                 </ul>
               </li>
               <li class="nav-item has-submenu">
                 <button type="button" class="nav-link submenu-trigger" aria-expanded="false" aria-controls="submenu-life">School Life <span class="submenu-indicator" aria-hidden="true">&#9662;</span></button>
                 <ul id="submenu-life" class="submenu" aria-label="School Life submenu">
-                  <li><a href="/pages/counselling.html">Counselling &amp; Mentoring</a></li>
-                  <li><a href="/pages/hostel.html">Hostel Life</a></li>
-                  <li><a href="/pages/extracurricular.html">Extra-Curricular</a></li>
-                  <li><a href="/pages/parents.html">PTA &amp; PTF</a></li>
-                  <li><a href="/pages/alumni.html">Alumni Network</a></li>
+                  <li><a href="/pages/counselling">Counselling &amp; Mentoring</a></li>
+                  <li><a href="/pages/hostel">Hostel Life</a></li>
+                  <li><a href="/pages/extracurricular">Extra-Curricular</a></li>
+                  <li><a href="/pages/parents">PTA &amp; PTF</a></li>
+                  <li><a href="/pages/alumni">Alumni Network</a></li>
                 </ul>
               </li>
-              <li class="nav-item"><a class="nav-link" href="/pages/news.html">News and Events</a></li>
-              <li class="nav-item"><a class="nav-link" href="/pages/contact.html">Contact</a></li>
+              <li class="nav-item"><a class="nav-link" href="/pages/news">News and Events</a></li>
+              <li class="nav-item"><a class="nav-link" href="/pages/contact">Contact</a></li>
             </ul>
 
             <div class="mobile-nav-socials" aria-label="Sagab Schools social media">
@@ -106,7 +106,7 @@
 
           <div class="header-actions" aria-label="Header actions">
             <div class="social-links" aria-label="Social links">${renderSocialLinks('social-link')}</div>
-            <a class="apply-btn" href="/pages/admission-process.html">Apply Now</a>
+            <a class="apply-btn" href="/pages/admission-process">Apply Now</a>
           </div>
         </div>
       </header>
@@ -132,13 +132,13 @@
             <div class="footer-links-col">
               <h3>Quick Links</h3>
               <ul class="footer-links">
-                <li><a href="/pages/admission-process.html">Admission Process</a></li>
-                <li><a href="/pages/tuition.html">School Fees</a></li>
-                <li><a href="/pages/calendar.html">School Calendar</a></li>
-                <li><a href="/pages/curriculum.html">Curriculum</a></li>
-                <li><a href="/pages/hostel.html">Hostel</a></li>
+                <li><a href="/pages/admission-process">Admission Process</a></li>
+                <li><a href="/pages/tuition">School Fees</a></li>
+                <li><a href="/pages/calendar">School Calendar</a></li>
+                <li><a href="/pages/curriculum">Curriculum</a></li>
+                <li><a href="/pages/hostel">Hostel</a></li>
                 <li><a href="https://sagab.schulup.com" target="_blank" rel="noopener noreferrer">Portal</a></li>
-                <li><a href="/pages/contact.html">Contact Us</a></li>
+                <li><a href="/pages/contact">Contact Us</a></li>
               </ul>
             </div>
 

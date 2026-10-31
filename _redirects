@@ -1,0 +1,24 @@
+# Redirect old .html URLs to clean URLs (301 permanent)
+/index.html                     /                               301
+/pages/overview.html            /pages/overview                 301
+/pages/proprietress.html        /pages/proprietress             301
+/pages/governors.html           /pages/governors                301
+/pages/staff.html               /pages/staff                    301
+/pages/career.html              /pages/career                   301
+/pages/facilities.html          /pages/facilities               301
+/pages/curriculum.html          /pages/curriculum               301
+/pages/calendar.html            /pages/calendar                 301
+/pages/prefects.html            /pages/prefects                 301
+/pages/admission-process.html   /pages/admission-process        301
+/pages/admissions.html          /pages/admissions               301
+/pages/tuition.html             /pages/tuition                  301
+/pages/summer-school.html       /pages/summer-school            301
+/pages/counselling.html         /pages/counselling              301
+/pages/hostel.html              /pages/hostel                   301
+/pages/extracurricular.html     /pages/extracurricular          301
+/pages/parents.html             /pages/parents                  301
+/pages/alumni.html              /pages/alumni                   301
+/pages/life.html                /pages/life                     301
+/pages/news.html                /pages/news                     301
+/pages/contact.html             /pages/contact                  301
+/pages/admin-login.html         /pages/admin-login              301
